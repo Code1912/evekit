@@ -1,0 +1,23 @@
+
+
+<div *ngFor="let confirm of confirmArray"
+     id="confirm{{confirm.id}}"
+     class="modal fade   modal-primary " style="z-index: 9999"
+     data-backdrop="false"  data-show="true" confirmShow
+     role="dialog">
+            <div class="modal-content"  style="width: 70%;left: 15%;top: 30px;position: absolute;min-width: 100px"  >
+                  <div class="modal-header">
+                        <button (click)="delConfirm(confirm.id)" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">×</span>
+                        </button>
+                        <h4 class="modal-title">Confirm</h4>
+                  </div>
+                  <div class="modal-body">
+                    <p [innerHTML]="confirm.msg"></p>
+                  </div>
+                  <div class="modal-footer">
+                    <button style="margin-left: 10px" type="button" class="btn btn-primary pull-right" data-dismiss="modal" (click)="onCancel(confirm)"><i class="fa fa-ban"></i>  Cancel</button>
+                    <button type="button" class="btn btn-primary" (click)="onOk(confirm)"> <i class="fa fa-check"></i> Ok </button>
+                  </div>
+            </div>
+</div>

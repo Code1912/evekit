@@ -1,0 +1,24 @@
+<div>
+
+
+    <button (click)="btnClick(0)" >Test alert error</button>
+    <button (click)="btnClick(1)" >Test alert info</button>
+    <button (click)="btnClick(2)" >Test alert warning</button>
+    <button (click)="btnClick(3)" >Test alert success</button>
+    <button (click)="btnClick(4)" >Test confirm</button>
+    <div>
+        <button (click)="btnOpenWindow()">Test Window</button>
+    </div>
+
+    <div eveWindow     [eveWindowOptions]="testOptions">
+        sdddddddddddddd
+    </div>
+
+    <div>
+        <button (click)="testHttp(false)">TestHttp</button>
+    </div>
+
+    <div>
+        <button (click)="testHttp(true)">TestHttp With No Loading</button>
+    </div>
+</div>

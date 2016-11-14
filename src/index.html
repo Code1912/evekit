@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base href="/">
+    <title>Eve Kit</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="assets/css/asset.css" />
+    <link rel="stylesheet" href="assets/app.bundle.css" />
+</head>
+<body class="skin-blue sidebar-mini">
+    <container></container>
+    <div id="defaultMask" class="load-mask">
+
+    </div>
+    <div id="defaultLoading" class="spinner">
+        <div class="spinner-container container1">
+            <div class="circle1"></div>
+            <div class="circle2"></div>
+            <div class="circle3"></div>
+            <div class="circle4"></div>
+        </div>
+        <div class="spinner-container container2">
+            <div class="circle1"></div>
+            <div class="circle2"></div>
+            <div class="circle3"></div>
+            <div class="circle4"></div>
+        </div>
+        <div class="spinner-container container3">
+            <div class="circle1"></div>
+            <div class="circle2"></div>
+            <div class="circle3"></div>
+            <div class="circle4"></div>
+        </div>
+    </div>
+    <script type="text/javascript" src="assets/js/asset.js"></script>
+    <script type="text/javascript" src="assets/angular2.bundle.js"></script>
+    <script type="text/javascript" src="assets/app.bundle.js"></script>
+    <script>
+        System.import('build/systemjs.config.js').then(function () {
+            System.import('app').then(function () {
+
+                    $("#defaultMask").hide();
+                    $("#defaultLoading").hide();
+
+
+            }).catch(function (err) {
+                console.error(err);
+            });
+        });
+    </script>
+</body>
+
+</html>

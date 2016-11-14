@@ -1,0 +1,50 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "system",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "removeComments": false,
+    "noImplicitAny": false,
+    "suppressImplicitAnyIndexErrors": true,
+    "baseUrl": ".",
+    "paths": {
+      "eve/services": [
+        "src/core/services/index"
+      ],
+      "eve/components": [
+        "src/core/components/index"
+      ],
+      "eve/directives": [
+        "src/core/directives/index"
+      ],
+      "eve/common": [
+        "src/core/common/index"
+      ],
+      "eve/module": [
+        "src/core/index"
+      ]
+    }
+  }
+}
+/*
+{
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "removeComments": true,
+    "module": "commonjs",
+    "target": "es5",
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "sourceMap": true,
+    "declaration": false
+  },
+  "buildOnSave": false,
+  "compileOnSave": false,
+  "exclude": [
+    "node_modules"
+  ]
+}*/

@@ -1,0 +1,6 @@
+
+<div class="alert alert-{{ getClass(alert.type)}} alert-dismissible"  *ngFor="let alert of alertArray" >
+    <button type="button" class="close" data-dismiss="alert"    (click)="onClose(alert.id)">×</button>
+    <h4><i class="icon fa {{getIconClass(alert.type)}}"></i>  {{alert.title}}</h4>
+    <p [innerHtml]="alert.msg"></p>
+</div>

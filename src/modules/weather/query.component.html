@@ -1,0 +1,37 @@
+<div style='   '>
+
+    <button class="btn btn-primary btn-sm" (click)="doRefresh()" ><i class="fa fa-refresh"></i> Refresh</button>
+
+    <h3>{{info.city}}</h3>
+    <div> pm2.5 :{{info.pm25}}</div>
+    <ul>
+        <li class="list-row" *ngFor="let item of info.weather_data">
+            <span class="line day">{{item.day}}</span>
+            <img style="height: 30px" src="{{item.img}}" class="line"/>
+            <span class="line">{{item.temperature}}</span>
+            <span class="line">{{item.weather}}</span>
+            <span class="line">{{item.wind}}</span>
+            <button class="btn btn-primary btn-xs" (click)="doEdit(item)"><i class="fa fa-edit"></i></button>
+
+        </li>
+    </ul>
+
+
+    <evetabs>
+        <eveTab  [tabTitle]="'abcd'">
+            11111
+        </eveTab>
+        <eveTab  [tabTitle]="'cbd'"  active="true"  >
+           22222v
+        </eveTab>
+    </evetabs>
+</div>
+
+<div eveWindow id="weatherEditWindow" [eveWindowOptions]="windowOptions"  >
+    <edit [weather]="selectedItem" (editNotify)="onEdit($event)"></edit>
+</div>
+
+<div evechart=""  style="height: 500px;width: 500px">
+
+</div>
+
