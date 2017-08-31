@@ -1,7 +1,7 @@
 /**
  * Created by Code1912 on 2016/10/24.
  */
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {EveTabComponent} from "./tab";
 
 @Component({
@@ -19,11 +19,13 @@ import {EveTabComponent} from "./tab";
 </div>
 `
 })
-export class EveTabsComponent implements OnInit {
+export class EveTabsComponent implements OnInit ,OnDestroy{
     constructor() { }
 
     private  tabs:EveTabComponent[]=[];
     ngOnInit() { }
+    ngOnDestroy(){
+    }
     addTab(tab:EveTabComponent) {
         this.tabs.push(tab);
     }

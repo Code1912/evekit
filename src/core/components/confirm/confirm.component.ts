@@ -3,8 +3,8 @@
  * Date  : 2016/10/3 (́>◞౪◟<‵)ﾉｼ
  */
 import { Component,Renderer, OnInit,AfterViewInit,ElementRef,AfterContentChecked,Directive } from '@angular/core';
-import {ConfirmInfo} from "eve/components";
-import {RootEventService} from "eve/services"
+import {ConfirmInfo} from "../../components";
+import {EventService} from "../../services"
 
 
 @Component({
@@ -17,15 +17,15 @@ export class ConfirmComponent implements OnInit, AfterViewInit,AfterContentCheck
     private selectId:number=0;
     private  confirmArray:ConfirmInfo[]= [];
 
-    constructor(private  rootEventService:RootEventService ) {
+    constructor(private  rootEventService:EventService ) {
 
     }
     ngOnInit() { }
     ngAfterViewInit(){
-        let that=this;
-        this.rootEventService.register("addConfirm",function (event:any,info:ConfirmInfo) {
-            that.addConfirm.call(that,info);
-        },this);
+
+        this.rootEventService.register("addConfirm",function (info:ConfirmInfo) {
+            this.addConfirm( info);
+        });
 
     }
     ngAfterContentChecked(){

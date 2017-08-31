@@ -4,7 +4,7 @@
  */
 import { Component, OnInit,AfterViewInit } from '@angular/core';
 import {AlertInfo, AlertType} from "./alert";
-import {  RootEventService} from 'eve/services';
+import {  EventService} from '../../services';
 const classArray = ["danger", "info", "warning", "success"];
 const iconArray = ["fa-ban", "fa-info", "fa-warning", "fa-check"];
 
@@ -18,7 +18,7 @@ export class AlertComponent implements OnInit, AfterViewInit{
     private selectId:number=0;
     private  alertArray:AlertInfo[]= [];
 
-    constructor(private  rootEventService:RootEventService) {
+    constructor(private  rootEventService:EventService) {
 
     }
     ngOnInit() { }
@@ -26,7 +26,7 @@ export class AlertComponent implements OnInit, AfterViewInit{
         let that=this;
         this.rootEventService.register("addAlert",(name:string,info:AlertInfo)=>{
             that.addAlert.call(that,info);
-        },that)
+        })
     }
     private addAlert(info:AlertInfo){
         if(this.alertArray.length>0){

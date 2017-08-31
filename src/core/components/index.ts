@@ -1,13 +1,27 @@
 /**
  * Created by Code1912 on 2016/10/14.
  */
-export *  from "./alert/alert.component";
-export *  from "./alert/alert";
-export *  from "./confirm/confirm.component"
-export *  from "./confirm/confirm";
-export *  from "./window/window.component";
-export *  from "./window/eve.window";
-export *  from "./loading/loading.component";
-export *  from "./loading/loading.component";
-export *  from "./system-error/error404.component";
-export *  from "./container/container.component";
+import {AlertComponent} from "./alert/alert.component";
+import {ConfirmComponent} from "./confirm/confirm.component";
+import {EveWindowComponent} from "./window/window.component";
+import {LoadingComponent} from "./loading/loading.component";
+import {EChartComponent} from "./echart/echarts.component";
+import {EveTabsComponent} from "./tabs/tabs";
+import {EveTabComponent} from "./tabs/tab";
+
+export * from "./alert/alert";
+export * from "./confirm/confirm";
+export * from "./window/eve.window";
+
+export {
+    EveTabsComponent,
+    EveTabComponent,
+    AlertComponent,
+    ConfirmComponent,
+    EveWindowComponent,
+    LoadingComponent,
+    EChartComponent
+}
+
+export const ALL_COMPONENTS = [EveTabsComponent, EveTabComponent, AlertComponent, ConfirmComponent, EveWindowComponent, LoadingComponent, EChartComponent]
+ 

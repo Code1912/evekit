@@ -14,7 +14,7 @@
         registerMap(mapName: string, geoJson: Object, specialAreas?: Object),
         getMap(mapName: string): Object,
         registerTheme(themeName: string, theme: Object),
-        connect(group:string|Array),
+        connect(group:string|Array<any>),
         disConnect(group:string),
         dispose(target: ECharts|HTMLDivElement|HTMLCanvasElement)
     }

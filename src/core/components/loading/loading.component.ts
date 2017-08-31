@@ -3,7 +3,7 @@
  * Date  : 2016/10/3 (́>◞౪◟<‵)ﾉｼ
  */
 import {Component, OnInit, OnDestroy, AfterContentInit} from '@angular/core';
-import {RootEventService} from "eve/services";
+import {EventService} from "../../services";
 @Component({
     selector: 'loading',
     templateUrl: 'loading.component.html',
@@ -13,14 +13,16 @@ export class LoadingComponent implements OnInit,OnDestroy,AfterContentInit {
     private  isShow:boolean=false;
     private  removeFunc:Function;
 
-    constructor(private  rootEventService:RootEventService) {
+    constructor(private  rootEventService:EventService) {
         this.isShow=true;
     }
     ngOnInit() {
-        this.removeFunc=  this.rootEventService.register("loading", this.showHide,this);
+        this.removeFunc=  this.rootEventService.register("loading",  (val)=>{
+            this.showHide(val);
+        });
 
     }
-    showHide(name:string,isShow:boolean){
+    showHide(isShow:boolean){
         this.isShow=isShow;
     }
     ngOnDestroy(){
