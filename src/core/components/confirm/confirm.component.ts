@@ -22,11 +22,10 @@ export class ConfirmComponent implements OnInit, AfterViewInit,AfterContentCheck
     }
     ngOnInit() { }
     ngAfterViewInit(){
-
+        let _this=this;
         this.rootEventService.register("addConfirm",function (info:ConfirmInfo) {
-            this.addConfirm( info);
+            _this.addConfirm( info);
         });
-
     }
     ngAfterContentChecked(){
        // console.log(this.element.nativeElement.querySelectorAll(".modal"))

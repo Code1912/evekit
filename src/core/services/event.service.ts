@@ -21,6 +21,6 @@ export class EventService {
             throw new Error(`event:'${eventName}' has not exists.`)
         }
         let event=<EventEmitter<any>>this.registerEvent[eventName];
-        event.emit(args);
+        event.emit(...args);
     }
 }

@@ -10,11 +10,11 @@ import {EventService} from "../../services";
    
 })
 export class LoadingComponent implements OnInit,OnDestroy,AfterContentInit {
-    private  isShow:boolean=false;
+    public  isShow:boolean=false;
     private  removeFunc:Function;
 
     constructor(private  rootEventService:EventService) {
-        this.isShow=true;
+
     }
     ngOnInit() {
         this.removeFunc=  this.rootEventService.register("loading",  (val)=>{

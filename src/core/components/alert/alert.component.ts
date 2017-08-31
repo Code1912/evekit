@@ -23,9 +23,8 @@ export class AlertComponent implements OnInit, AfterViewInit{
     }
     ngOnInit() { }
     ngAfterViewInit(){
-        let that=this;
-        this.rootEventService.register("addAlert",(name:string,info:AlertInfo)=>{
-            that.addAlert.call(that,info);
+        this.rootEventService.register("addAlert",( info:AlertInfo)=>{
+            this.addAlert(info);
         })
     }
     private addAlert(info:AlertInfo){

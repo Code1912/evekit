@@ -1,6 +1,6 @@
-<div *ngIf="isShow"  style="position: absolute;top: 0px;left: 0px;height: 100%;width: 100%">
+<div  *ngIf="isShow" [hidden]="!isShow"  style="position: absolute;top: 0px;left: 0px;height: 100%;width: 100%">
     <div class="load-mask"    >
-
+{{isShow}}
     </div>
     <div class="spinner">
         <div class="spinner-container container1">

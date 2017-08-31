@@ -47,8 +47,8 @@ export class  ModuleLoader{
       //  ModuleLoader.router.events.forEach(p=>console.log(p))
     }
     static  loadSource(moduleName:string,routePath){
-        var jsUrl=`modules/${moduleName}/${moduleName}.bundle.js`;
-        StyleLoader.load(`modules/${moduleName}/${moduleName}.bundle.css`);
+        var jsUrl=`modules/${moduleName}/${moduleName}.js`;
+        StyleLoader.load(`modules/${moduleName}/${moduleName}.css`);
         ScriptLoader.load(jsUrl).then((ret)=>{
                 let module=ModuleLoader.moduleConfigs.find(p=>p.path.toLocaleLowerCase()===moduleName.toLocaleLowerCase());
                 module.isLoad=true;
