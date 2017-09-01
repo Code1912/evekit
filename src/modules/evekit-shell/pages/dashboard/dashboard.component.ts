@@ -49,11 +49,11 @@ export class DashboardComponent implements OnInit,AfterViewInit {
         }
         if(type==4)
         {
-            this.alertService.confirm("<div>aa confirm</div>",function () {
-                this.alertService.confirm("<div>bb confirm</div>",function () {
-                    alert(1);
+            this.alertService.confirm( "ffff",null, ()=> {
+                this.alertService.confirm( "22222222222222","666666",function () {
+  alert(1)
                 })
-            },null,this)
+            })
         }
     }
     btnOpenWindow(){

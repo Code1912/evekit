@@ -5,6 +5,6 @@ let webpackConfig=require("./webpack.common.js");
 let _=require("lodash");
 let config = Object.assign({},webpackConfig);
 config=_.merge(config,{
-    entry:{  'core': './src/core/index.ts'},
+    entry:{  'core': './src/evekit-core/index.ts'},
 });
 module.exports=config;

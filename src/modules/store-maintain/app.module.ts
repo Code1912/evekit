@@ -12,11 +12,11 @@ import { BrowserModule }  from '@angular/platform-browser';
 import { RouterModule} from '@angular/router';
 import { FeedbackModule} from "./feedback/app"
  
- import {RoutePathConfig} from  "../../core/common"
+ import {RoutePathConfig,EvekitCoreModule} from  "evekit/core"
 
 
 @NgModule({
-    imports:[RouterModule.forChild([
+    imports:[EvekitCoreModule,RouterModule.forChild([
         {
             path: 'feedback',
             loadChildren: ()=>{ return FeedbackModule}

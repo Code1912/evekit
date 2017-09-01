@@ -1,0 +1,22 @@
+
+
+<div #ele  [style.display]="isShow?'block':''"
+     class="modal fade   modal-primary {{isShow?'in':''}} " style="z-index: 9999"
+     data-backdrop="false"  data-show="true"
+     role="dialog">
+            <div class="modal-content"  style="width: 40%;left: 30%;top: 30px;position: absolute;min-width: 100px"  >
+                  <div class="modal-header">
+                        <button (click)="onClose()" type="button" class="close"   aria-label="Close">
+                          <span aria-hidden="true">×</span>
+                        </button>
+                        <h4 class="modal-title" [innerHTML]="title"></h4>
+                  </div>
+                  <div class="modal-body">
+                    <p [innerHTML]="msg"></p>
+                  </div>
+                  <div class="modal-footer">
+                    <button style="margin-left: 10px" type="button" class="btn btn-primary pull-right"   (click)="onCancel()"><i class="fa fa-ban"></i>  Cancel</button>
+                    <button type="button" class="btn btn-primary" (click)="onOk()"  > <i class="fa fa-check"></i> Ok </button>
+                  </div>
+            </div>
+</div>

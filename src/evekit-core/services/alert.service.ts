@@ -8,7 +8,6 @@
 import { Injectable ,AfterViewChecked,EventEmitter} from '@angular/core';
 import {EventService} from "./event.service";
 import {AlertInfo, AlertType} from "../components/alert/alert";
-import {ConfirmInfo} from "../components/confirm/confirm";
 
 @Injectable()
 export class AlertService {
@@ -20,7 +19,7 @@ export class AlertService {
         info.title = title;
         info.msg = msg;
         info.type = AlertType.info;
-        this.eventService.broadcast("addAlert",info);
+        this.eventService.emit("addAlert",info);
     }
 
     error(msg: string, title?: string) {
@@ -28,7 +27,7 @@ export class AlertService {
         info.title = title;
         info.msg = msg;
         info.type = AlertType.error;
-        this.eventService.broadcast("addAlert",info);
+        this.eventService.emit("addAlert",info);
     }
 
     success(msg: string, title?: string) {
@@ -36,7 +35,7 @@ export class AlertService {
         info.title = title;
         info.msg = msg;
         info.type = AlertType.success;
-        this.eventService.broadcast("addAlert",info);
+        this.eventService.emit("addAlert",info);
     }
 
     warning(msg: string, title?: string) {
@@ -44,14 +43,12 @@ export class AlertService {
         info.title = title;
         info.msg = msg;
         info.type = AlertType.warning;
-        this.eventService.broadcast("addAlert",info);
+        this.eventService.emit("addAlert",info);
     }
-    confirm(msg:string,ok?:Function,cancel?:Function,source?:Object){
-        let info=new ConfirmInfo();
-        info.msg=msg;
-        info.ok=ok;
-        info.cancel=cancel;
-        info.source=source;
-        this.eventService.broadcast("addConfirm",info);
+    confirm(msg:string,title:string,ok?:Function,cancel?:Function,close?:Function){
+        var args={
+            msg,title,ok,cancel,close
+        }
+        this.eventService.emit("addConfirm",args);
     }
 }

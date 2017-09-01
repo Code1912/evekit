@@ -16,14 +16,14 @@ let config= {
         umdNamedDefine: true
     },
     entry: {
-      //  'evekit[core]': './src/index.ts'
-        //  'kendomodule': './src/core/kendomodule.ts',
-        //  'wijmomodule':'./src/core/wijmo.module.ts'
+      //  'evekit[evekit-core]': './src/index.ts'
+        //  'kendomodule': './src/evekit-core/kendomodule.ts',
+        //  'wijmomodule':'./src/evekit-core/wijmo.module.ts'
     },
     resolve: {
         extensions: [ '.js', '.ts'],
         alias:{
-            //   '@wijmo.module':helpers.root("src","core/wijmo.module"),
+            //   '@wijmo.module':helpers.root("src","evekit-core/wijmo.module"),
         }
     },
     module: {
@@ -38,14 +38,14 @@ let config= {
             },
             {
                 test: /\.html$/,
-                loader: 'html-loader'
+                loader: 'raw-loader'
             }
         ]
     },
     plugins: [
         new ExtractTextPlugin('[name].css')
     ],
-    externals: {
+    externals: [{
         "jquery": "jQuery",
         "JQuery":"jQuery",
         "$": "jQuery",
@@ -61,25 +61,29 @@ let config= {
         '@angular/platform-browser': 'ng.platformBrowser',
         "@angular/platform-browser/animations":"ng.platformBrowser.animations",
         '@angular/platform-browser-dynamic': 'ng.platformBrowserDynamic',
-        "evekit/core":"evekit.core"
-    },
+        "evekit/core":"evekit.evekit-core"
+    },function (context, request, callback) {
+        if (request.indexOf('evekit/') === 0) {
+            let key = request.split('/')[1];
+            return callback(null, `var evekit['${key}']`);
+        }
+        callback();
+    }],
     watchOptions:{
         aggregateTimeout: 300,
     }
 };
 (function () {
-    for(let key in config.externals){
-        let array=config.externals[key].split(".");
+    for(let key in config.externals[0]){
+        let array=config.externals[0][key].split(".");
         if(array.length>1){
          //   console.log(key,array)
-            config.externals[key]=array;
+            config.externals[0][key]=array;
         }
-        let oldValue= config.externals[key];
-        config.externals[key]={
+        let oldValue= config.externals[0][key];
+        config.externals[0][key]={
             commonjs2:key,
             commonjs:key,
-            amd:key,
-            umd:oldValue,
             root:oldValue
         }
     }

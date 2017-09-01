@@ -8,7 +8,7 @@ export class EventService {
 
     }
     private  registerEvent={};
-    public register(name:string,func:Function ):Function{
+    public subscribe(name:string,func:Function ):Function{
         if(!this.registerEvent.hasOwnProperty(name)){
             this.registerEvent[name]=new EventEmitter<any>();
         }
@@ -16,11 +16,11 @@ export class EventService {
         return  event.subscribe(func);
     }
 
-    public broadcast(eventName:string,...args){
+    public emit(eventName:string,value){
         if(!this.registerEvent.hasOwnProperty(eventName)){
             throw new Error(`event:'${eventName}' has not exists.`)
         }
         let event=<EventEmitter<any>>this.registerEvent[eventName];
-        event.emit(...args);
+        event.emit(value);
     }
 }

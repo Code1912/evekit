@@ -26,6 +26,7 @@ let browserSync = require("browser-sync");
 let addsrc = require('gulp-add-src');
 let del = require("del");
 let logger = require('gulp-logger');
+let helpers = require('./helpers');
 // import embedTemplates   from  'gulp-angular-embed-templates';
 colors.setTheme({
     silly: 'rainbow',
@@ -97,13 +98,6 @@ let assetCss = [
 
 ];
 
-function handleDone(done, msg) {
-    done();
-    if (msg) {
-        console.log(msg);
-    }
-
-}
 
 gulp.task('clean', (done) =>
     del(['./dist/'], done)
@@ -147,7 +141,7 @@ function buildModuleTask(moduleName) {
         let config = Object.create(webpackConfig);
         let key = `evekit[${moduleName}]`;
         config.entry[`${moduleName}`] = `./src/modules/${moduleName}/index.ts`;
-
+        config.output.path=helpers.root("dist","modules");
         config.watch = args.env === "dev";
         webpackCompile(config, done);
     });
@@ -158,7 +152,7 @@ gulp.task("build:modules", function (done) {
     let tasks = modules.map(buildModuleTask);
     return gulp.parallel(tasks)(done);
 });
-gulp.task("dts:core", function () {
+gulp.task("dts:evekit-core", function () {
     return dts("core");
 });
 
@@ -176,10 +170,10 @@ function dts(module) {
     return tsResult.dts.pipe(gulp.dest(dest));
 }
 
-gulp.task("build:core", (done) => {
+gulp.task("build:evekit-core", (done) => {
     let config = Object.assign({}, webpackConfig);
     config.entry = {
-        'core': './src/core/index.ts',
+        'evekit-core': './src/evekit-core/index.ts',
     };
     webpackCompile(config, done);
 });
@@ -189,6 +183,9 @@ function webpackCompile(config, done) {
     if (config.watch) {
         webpack(config).watch(300, function (err, stats) {
             handleError(err, stats)
+            if(config.entry["evekit-core"]){
+                dts("core")
+            }
             reload();
         });
         done();
@@ -206,6 +203,7 @@ gulp.task('browser-sync', function () {
     browserSync.init({
         server: {
             baseDir: "./dist",
+            ghostMode: false,
             middleware: [historyApiFallback()]
         }
     });
@@ -221,13 +219,13 @@ gulp.task("serve", done => {
     done();
 });
 gulp.task('default', function (done) {
-    return gulp.series("clean", "utility", "build:core", "dts:core", "build:modules", "serve", "browser-sync")(done);
+    return gulp.series("clean", "utility", "build:evekit-core", "dts:evekit-core", "build:modules", "serve", "browser-sync")(done);
     // gulp.series("clean", "utility", "build:modules", "browser-sync", "serve", done)();
 });
 
 
 gulp.task("dts", done => {
-    // tsc src/core/index.ts --declaration --module commonjs --target es5 --outDir build
+    // tsc src/evekit-core/index.ts --declaration --module commonjs --target es5 --outDir build
 
 
 });

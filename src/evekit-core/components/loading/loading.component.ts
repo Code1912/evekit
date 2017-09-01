@@ -17,7 +17,7 @@ export class LoadingComponent implements OnInit,OnDestroy,AfterContentInit {
 
     }
     ngOnInit() {
-        this.removeFunc=  this.rootEventService.register("loading",  (val)=>{
+        this.removeFunc=  this.rootEventService.subscribe("loading",  (val)=>{
             this.showHide(val);
         });
 

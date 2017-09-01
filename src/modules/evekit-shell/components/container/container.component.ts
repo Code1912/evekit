@@ -2,9 +2,8 @@
  * Created by Code1912 on 2016/10/16.
  */
 import {Component, OnInit, AfterContentChecked} from '@angular/core';
-import {LoadingService} from "../../../../core/services";
 import {Router} from "@angular/router";
-import {ModuleLoader} from "../../../../core/common/module.loader"
+import {ModuleLoader} from "evekit/core"
 @Component({
     moduleId: "container",
     selector: 'container',

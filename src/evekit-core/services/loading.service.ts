@@ -13,11 +13,11 @@ export class LoadingService {
 
     }
     showLoading(){
-        this.rootEventService.broadcast("loading",true)
+        this.rootEventService.emit("loading",true)
     }
 
     hideLoading(){
-        this.rootEventService.broadcast("loading",false)
+        this.rootEventService.emit("loading",false)
     }
 
 }

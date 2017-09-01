@@ -41,10 +41,10 @@ export class EveComponent implements OnInit, AfterContentInit {
     }
 
     doLogout() {
-        this.alertService.confirm("是否退出？", () => {
+        this.alertService.confirm("是否退出？", null,() => {
             this.authService.logOut();
 
-        }, null, this);
+        },);
     }
 
 }
