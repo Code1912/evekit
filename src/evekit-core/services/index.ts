@@ -8,8 +8,9 @@ import {EveHttpService} from "./eve-http.service";
 import {AuthService,UserInfo} from "./auth.service";
 import {CookieService} from "./cookie.service";
 import {AlertService} from "./alert.service";
+import {UtilService} from "./util.service";
 
 export {
-    AlertService, EventService, LoadingService, EveHttpService, AuthService, CookieService,UserInfo
+    AlertService, EventService, LoadingService, EveHttpService, AuthService, CookieService,UserInfo,UtilService
 }
-export const ALL_SERVICES = [AlertService, EventService, LoadingService, EveHttpService, AuthService, CookieService]
+export const ALL_SERVICES = [AlertService, EventService, LoadingService, EveHttpService, AuthService, CookieService,UtilService]

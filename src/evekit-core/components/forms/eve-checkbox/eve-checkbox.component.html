@@ -1,0 +1,9 @@
+<div class="eve-checkbox">
+    <input (blur)="onBlur()" [disabled]="disabled" [id]="name" type="checkbox" [(ngModel)]="value" [name]="name"/>
+    <label [for]="name">
+               <span [innerHTML]="text">
+
+               </span>
+        <ng-content></ng-content>
+    </label>
+</div>

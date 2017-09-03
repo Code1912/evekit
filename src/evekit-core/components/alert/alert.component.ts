@@ -2,7 +2,7 @@
  * Author: Code1912  乁( ◔ ౪◔)「
  * Date  : 2016/10/3 (́>◞౪◟<‵)ﾉｼ
  */
-import { Component, OnInit,AfterViewInit } from '@angular/core';
+import {Component, OnInit, AfterViewInit, ViewEncapsulation} from '@angular/core';
 import {AlertInfo, AlertType} from "./alert";
 import {  EventService} from '../../services';
 const classArray = ["danger", "info", "warning", "success"];
@@ -10,7 +10,8 @@ const iconArray = ["fa-ban", "fa-info", "fa-warning", "fa-check"];
 
 @Component({
     selector: 'div[alert]',
-    templateUrl: 'alert.component.html'
+    encapsulation: ViewEncapsulation.None,
+    templateUrl: 'alert.component.html',
 })
 
 export class AlertComponent implements OnInit, AfterViewInit{

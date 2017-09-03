@@ -12,7 +12,7 @@ import {EveWindowOptions,EveWindowComponent} from "evekit/core";
 })
 export class DashboardComponent implements OnInit,AfterViewInit {
     testOptions:EveWindowOptions;
-
+    eveCb=true;
     @ViewChild(EveWindowComponent)
     testWindow:EveWindowComponent;
 
@@ -23,7 +23,9 @@ export class DashboardComponent implements OnInit,AfterViewInit {
         this.testOptions.width=600;
         this.testOptions.title="test window title";
     }
-
+    change(eve){
+       console.log("srouce:",this.eveCb,"       new:",eve)
+    }
     ngOnInit() {
 
     }

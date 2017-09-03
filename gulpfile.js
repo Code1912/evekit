@@ -4,10 +4,9 @@
  */
 'use strict';
 let args = require('minimist')(process.argv.slice(2));
-
+let through=require("through2")
 args.env = args.env || "dev";
-console.log(args)
-
+//console.log(args)
 let ts = require("gulp-typescript");
 let exec = require('child_process').exec;
 let gutil = require("gulp-util");
@@ -125,7 +124,7 @@ gulp.task("utility:img", function () {
         .pipe(gulp.dest('dist/assets/img'));
 });
 gulp.task("utility:html", function () {
-    return gulp.src(["src/**/*.html", "!src/modules/**/*.html"])
+    return gulp.src(["src/**/*.html", "!src/modules/**/*.html", "!src/evekit-core/**/*.html"])
         .pipe(gulp.dest('dist'));
 });
 gulp.task('utility', function (done) {
@@ -153,21 +152,27 @@ gulp.task("build:modules", function (done) {
     return gulp.parallel(tasks)(done);
 });
 gulp.task("dts:evekit-core", function () {
-    return dts("core");
+    return dts("evekit-core")
+        .pipe(through.obj(function (chunk, enc, cb) {
+       fs.writeFileSync( "./node_modules/@types/evekit/index.d.ts" ,"export * from './core'","utf-8");
+      cb(null, chunk)
+      }));
 });
 
 function dts(module) {
-    if (module !== "core") {
-        module = `modules/${core}`
+    let src=`./src/modules/${module}/**/*.ts`;
+    let dest =`./node_modules/@types/evekit/${module}`;
+    if (module == "evekit-core") {
+        src=`./src/evekit-core/**/*.ts`;
+        dest = `./node_modules/@types/evekit/core`;
     }
-    let dest = `./node_modules/@types/evekit/${module}`;
     let tsProject = ts.createProject('tsconfig.json', {
         outDir: dest,
         declaration: true
     });
-    let tsResult = gulp.src([`./src/${module}/**/*.ts`]) // or tsProject.src()
+    let tsResult = gulp.src([src]) // or tsProject.src()
         .pipe(tsProject());
-    return tsResult.dts.pipe(gulp.dest(dest));
+    return tsResult.pipe(gulp.dest(dest));
 }
 
 gulp.task("build:evekit-core", (done) => {
@@ -184,7 +189,7 @@ function webpackCompile(config, done) {
         webpack(config).watch(300, function (err, stats) {
             handleError(err, stats)
             if(config.entry["evekit-core"]){
-                dts("core")
+                dts("evekit-core")
             }
             reload();
         });
@@ -219,7 +224,11 @@ gulp.task("serve", done => {
     done();
 });
 gulp.task('default', function (done) {
-    return gulp.series("clean", "utility", "build:evekit-core", "dts:evekit-core", "build:modules", "serve", "browser-sync")(done);
+    return gulp.series("clean", "utility","dts:evekit-core", "build:evekit-core",  "build:modules", "serve", "browser-sync")(done);
+    // gulp.series("clean", "utility", "build:modules", "browser-sync", "serve", done)();
+});
+gulp.task('build', function (done) {
+    return gulp.series("clean", "utility","dts:evekit-core", "build:evekit-core",  "build:modules",   "browser-sync")(done);
     // gulp.series("clean", "utility", "build:modules", "browser-sync", "serve", done)();
 });
 
