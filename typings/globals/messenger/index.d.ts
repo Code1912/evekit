@@ -1,10 +1,3 @@
-
-interface JQueryStatic {
-
-}
-interface JQuery{
-
-}
 interface MessengerStatic extends  Function{
     ():MessengerStatic
     hideAll();

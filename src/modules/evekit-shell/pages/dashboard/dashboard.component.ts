@@ -24,7 +24,7 @@ export class DashboardComponent implements OnInit,AfterViewInit {
         this.testOptions.title="test window title";
     }
     msg(){
-        this.messenger.confirm("sdf",()=>{
+        this.messenger.confirm("<div>sdfsdfsdf</div>",()=>{
             this.messenger.warning("ok");
         },()=>{
             console.log("cancel")
@@ -42,28 +42,23 @@ export class DashboardComponent implements OnInit,AfterViewInit {
     ngAfterViewInit(){
 
     }
-    btnClick(type:number){
-        if(type==0)
-        {
-            this.alertService.error("eeeeeeeeeeeee","err")
+    btnClick(type:number) {
+        if (type == 0) {
+            this.alertService.error("eeeeeeeeeeeee", "err")
         }
-        if(type==1)
-        {
-            this.alertService.info("<div>sdfsdfsdfsfsdfs</div>","iiiiiiii")
+        if (type == 1) {
+            this.alertService.info("<div>sdfsdfsdfsfsdfs</div>", "iiiiiiii")
         }
-        if(type==2)
-        {
-            this.alertService.warning("<div>wwwwwwwwwwwwwwww</div>","wwwwwww")
+        if (type == 2) {
+            this.alertService.warning("<div>wwwwwwwwwwwwwwww</div>", "wwwwwww")
         }
-        if(type==3)
-        {
-            this.alertService.success("<div>ssssss</div>","sssss")
+        if (type == 3) {
+            this.alertService.success("<div>ssssss</div>", "sssss")
         }
-        if(type==4)
-        {
-            this.alertService.confirm( "ffff",null, ()=> {
-                this.alertService.confirm( "22222222222222","666666",function () {
-  alert(1)
+        if (type == 4) {
+            this.alertService.confirm("ffff", () => {
+                this.alertService.confirm("22222222222222", function () {
+                    alert(1)
                 })
             })
         }

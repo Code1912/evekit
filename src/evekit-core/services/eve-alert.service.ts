@@ -45,9 +45,9 @@ export class EveAlertService {
         info.type = AlertType.warning;
         this.eventService.emit("addAlert",info);
     }
-    confirm(msg:string,title:string,ok?:Function,cancel?:Function,close?:Function){
+    confirm(msg:string,ok?:Function,cancel?:Function,close?:Function){
         var args={
-            msg,title,ok,cancel,close
+            msg,ok,cancel,close
         }
         this.eventService.emit("addConfirm",args);
     }

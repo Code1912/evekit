@@ -16,7 +16,6 @@ export class EveConfirmComponent implements OnInit, AfterViewInit,AfterContentCh
     @ViewChild("ele")
         ele:ElementRef;
     msg:string="";
-    title:string="";
     ok:Function=Function.prototype;
     cancel:Function=Function.prototype;
     close:Function=Function.prototype;
@@ -36,10 +35,9 @@ export class EveConfirmComponent implements OnInit, AfterViewInit,AfterContentCh
     }
     show(info){
         this.msg=info.msg;
-        this.title=info.title;
-        this.ok=info.ok||Function.prototype;;
-        this.cancel=info.cancel||Function.prototype;;
-        this.close=info.close||Function.prototype;;
+        this.ok=info.ok||Function.prototype;
+        this.cancel=info.cancel||Function.prototype;
+        this.close=info.close||Function.prototype;
         this.isShow=true;
     }
     hide(){

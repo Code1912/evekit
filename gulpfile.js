@@ -246,16 +246,11 @@ gulp.task("serve", done => {
 });
 gulp.task('default', function (done) {
     return gulp.series("serve","build", "browser-sync")(done);
-    // gulp.series("clean", "utility", "build:modules", "browser-sync", "serve", done)();
 });
 gulp.task('build', function (done) {
     return gulp.series("clean", "utility","dts:evekit-core", "build:evekit-core",  "build:modules")(done);
-    // gulp.series("clean", "utility", "build:modules", "browser-sync", "serve", done)();
 });
 
 
 gulp.task("dts", done => {
-    // tsc src/evekit-core/index.ts --declaration --module commonjs --target es5 --outDir build
-
-
 });
