@@ -6,23 +6,22 @@ import {
     Component, Renderer, OnInit, AfterViewInit, ElementRef, AfterContentChecked, Directive,
     ViewChild
 } from '@angular/core';
-import {EventService} from "../../services"
+import {EveEventService} from "../../../services"
 
-const noop= ()=>{};
 @Component({
     selector: 'div[confirm]',
     templateUrl: 'confirm.component.html'
 })
-export class ConfirmComponent implements OnInit, AfterViewInit,AfterContentChecked {
+export class EveConfirmComponent implements OnInit, AfterViewInit,AfterContentChecked {
     @ViewChild("ele")
         ele:ElementRef;
     msg:string="";
     title:string="";
-    ok:Function=noop;
-    cancel:Function=noop;
-    close:Function=noop;
+    ok:Function=Function.prototype;
+    cancel:Function=Function.prototype;
+    close:Function=Function.prototype;
     isShow:boolean=false;
-    constructor(private  rootEventService: EventService ) {
+    constructor(private  rootEventService: EveEventService ) {
 
     }
 
@@ -38,9 +37,9 @@ export class ConfirmComponent implements OnInit, AfterViewInit,AfterContentCheck
     show(info){
         this.msg=info.msg;
         this.title=info.title;
-        this.ok=info.ok||noop;
-        this.cancel=info.cancel||noop;
-        this.close=info.close||noop;
+        this.ok=info.ok||Function.prototype;;
+        this.cancel=info.cancel||Function.prototype;;
+        this.close=info.close||Function.prototype;;
         this.isShow=true;
     }
     hide(){

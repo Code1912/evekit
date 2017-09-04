@@ -2,7 +2,7 @@
  * Created by Code1912 on 2016/10/1.
  */
 import {Component, OnInit, ViewChild, Input, AfterContentInit, ElementRef} from '@angular/core';
-import {LoadingService, AlertService, AuthService, UserInfo} from "evekit/core"
+import {EveLoadingService, EveAlertService, EveAuthService, UserInfo} from "evekit/core"
 import {MenuComponent} from "../../components/menu/menu.component";
 
 @Component({
@@ -21,9 +21,9 @@ export class EveComponent implements OnInit, AfterContentInit {
 
     //  @ViewChildren(TodoComponent) todoComponents: QueryList<TodoComponent>;
     constructor(private ele: ElementRef,
-                private  loadingService: LoadingService,
-                private alertService: AlertService,
-                private  authService: AuthService) {
+                private  loadingService: EveLoadingService,
+                private alertService: EveAlertService,
+                private  authService: EveAuthService) {
         this.ele.nativeElement.className = "wrapper";
     }
 

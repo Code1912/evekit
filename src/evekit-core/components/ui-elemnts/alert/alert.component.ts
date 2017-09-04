@@ -4,7 +4,7 @@
  */
 import {Component, OnInit, AfterViewInit, ViewEncapsulation} from '@angular/core';
 import {AlertInfo, AlertType} from "./alert";
-import {  EventService} from '../../services';
+import {  EveEventService} from '../../../services';
 const classArray = ["danger", "info", "warning", "success"];
 const iconArray = ["fa-ban", "fa-info", "fa-warning", "fa-check"];
 
@@ -14,12 +14,12 @@ const iconArray = ["fa-ban", "fa-info", "fa-warning", "fa-check"];
     templateUrl: 'alert.component.html',
 })
 
-export class AlertComponent implements OnInit, AfterViewInit{
+export class EveAlertComponent implements OnInit, AfterViewInit{
     private  index:number=0;
     private selectId:number=0;
     private  alertArray:AlertInfo[]= [];
 
-    constructor(private  rootEventService:EventService) {
+    constructor(private  rootEventService:EveEventService) {
 
     }
     ngOnInit() { }

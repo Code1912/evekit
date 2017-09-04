@@ -9,7 +9,9 @@ import {EveWindow,EveWindowOptions} from "./eve.window"
 @Component({
     selector: 'div[eveWindow]',
     templateUrl: 'window.component.html',
-    inputs:["eveWindowOptions"]
+    inputs:["eveWindowOptions"],
+    styleUrls:["style.css"]
+
 })
 export class EveWindowComponent implements OnInit ,AfterContentInit,OnChanges{
     eveWindowOptions:EveWindowOptions;

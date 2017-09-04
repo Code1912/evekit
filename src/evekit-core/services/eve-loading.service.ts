@@ -3,13 +3,13 @@
  * Date  : 2016/10/3 (́>◞౪◟<‵)ﾉｼ
  */
 import { Injectable } from '@angular/core';
-import {EventService} from "../services";
+import {EveEventService} from "../services";
 
 
 @Injectable()
-export class LoadingService {
+export class EveLoadingService {
 
-    constructor(private rootEventService:EventService) {
+    constructor(private rootEventService:EveEventService) {
 
     }
     showLoading(){

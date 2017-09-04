@@ -1,19 +1,20 @@
-///<reference path="../../../../../node_modules/@angular/forms/src/directives/control_value_accessor.d.ts"/>
-import {Component, EventEmitter, forwardRef, Input, OnInit, Output, Provider} from '@angular/core';
+
+import {Component, EventEmitter, forwardRef, Input, OnInit, Output, Provider, ViewEncapsulation} from '@angular/core';
 import {UtilService} from "../../../services/util.service";
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
+
 const EVE_CHECKBOX_VALUE_ACCESSOR =  {
     provide:NG_VALUE_ACCESSOR,
     useExisting:forwardRef(() => EveCheckboxComponent),
     multi:true
 };
-const noop = () => {
-};
 
 @Component({
     selector: 'eve-checkbox',
     templateUrl: 'eve-checkbox.component.html',
-    providers:[EVE_CHECKBOX_VALUE_ACCESSOR]
+    encapsulation: ViewEncapsulation.None,
+    providers:[EVE_CHECKBOX_VALUE_ACCESSOR],
+    styleUrls:["eve-checkbox.component.styl"]
 })
 export class EveCheckboxComponent implements OnInit,  ControlValueAccessor {
     _value:boolean;
@@ -25,8 +26,8 @@ export class EveCheckboxComponent implements OnInit,  ControlValueAccessor {
     @Input()
     disabled:boolean;
 
-    private onTouchedCallback: () => void = noop;
-    private onChangeCallback: (_: any) => void = noop;
+    private onTouchedCallback = Function.prototype;
+    private onChangeCallback = Function.prototype;
     get value (){
         return this._value;
     }
@@ -40,10 +41,11 @@ export class EveCheckboxComponent implements OnInit,  ControlValueAccessor {
 
 
     constructor(private  utils: UtilService) {
+        this.name = `eve-checkbox-${this.name || this.utils.guid()}`
     }
 
     ngOnInit() {
-        this.name = `eve-checkbox-${this.name || this.utils.guid()}`
+
     }
     onBlur(){
         this.onTouchedCallback();

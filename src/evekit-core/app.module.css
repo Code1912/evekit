@@ -1,0 +1,10 @@
+ul.messenger-theme-flat .messenger-message.alert-warning .messenger-message-inner:before {
+    background: #ca9b58!important;
+}
+.messenger   .alert-error,
+.messenger   .alert-info,
+.messenger   .alert-success,
+.messenger   .alert-warning
+{
+    background-color: #404040!important;
+}

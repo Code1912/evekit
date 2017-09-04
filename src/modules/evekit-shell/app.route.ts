@@ -4,7 +4,7 @@
 import {RouterModule,Routes} from "@angular/router"
 import {ModuleWithProviders} from "@angular/core"
 
-import {AuthService} from "evekit/core";
+import {EveAuthService} from "evekit/core";
 import {EveComponent,Error404Component,DashboardComponent,LoginComponent} from "./pages";
 
 /*  {path: 'moduleA/test',
@@ -13,7 +13,7 @@ export const AppRoutes: ModuleWithProviders = RouterModule.forRoot(<Routes>[
     {
         path: '',
         component: EveComponent,
-        canActivate: [AuthService],
+        canActivate: [EveAuthService],
         children: [
             {
                 path: 'system/404',

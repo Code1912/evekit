@@ -4,10 +4,6 @@
 var http = require('http');
 var apiFactory=require("../serve/apiService").apiFactory;
 http.createServer(function (request, response) {
-
-    // 发送 HTTP 头部
-    // HTTP 状态值: 200 : OK
-    // 内容类型: text/plain
     apiFactory(request,response);
 }).listen(7777);
 

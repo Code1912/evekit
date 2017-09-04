@@ -6,12 +6,12 @@
  * Date  : 2016/10/3 (́>◞౪◟<‵)ﾉｼ
  */
 import { Injectable ,AfterViewChecked,EventEmitter} from '@angular/core';
-import {EventService} from "./event.service";
-import {AlertInfo, AlertType} from "../components/alert/alert";
+import {EveEventService} from "./eve-event.service";
+import {AlertInfo, AlertType} from "../components/ui-elemnts/alert/alert";
 
 @Injectable()
-export class AlertService {
-    constructor(private  eventService:EventService){
+export class EveAlertService {
+    constructor(private  eventService:EveEventService){
 
     }
     info(msg: string, title?: string) {

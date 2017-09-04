@@ -3,7 +3,7 @@
  */
 import {Component, OnInit, AfterViewInit, ViewChild} from '@angular/core';
 import {Router} from "@angular/router";
-import {AlertService ,EveHttpService } from 'evekit/core';
+import {EveAlertService ,EveHttpService,EveMessengerService } from 'evekit/core';
 import {EveWindowOptions,EveWindowComponent} from "evekit/core";
 
 @Component({
@@ -16,12 +16,22 @@ export class DashboardComponent implements OnInit,AfterViewInit {
     @ViewChild(EveWindowComponent)
     testWindow:EveWindowComponent;
 
-    constructor(private  alertService:AlertService,private  http:EveHttpService,private  router:Router) {
+    constructor(private  alertService:EveAlertService,private  http:EveHttpService,private  router:Router,private  messenger:EveMessengerService) {
 
         this.testOptions=new EveWindowOptions();
         this.testOptions.height=500;
         this.testOptions.width=600;
         this.testOptions.title="test window title";
+    }
+    msg(){
+        this.messenger.confirm("sdf",()=>{
+            this.messenger.warning("ok");
+        },()=>{
+            console.log("cancel")
+        },()=>{
+            console.log("dsfsdf")
+        })
+
     }
     change(eve){
        console.log("srouce:",this.eveCb,"       new:",eve)

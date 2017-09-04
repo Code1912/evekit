@@ -7,7 +7,7 @@ import {  ElementRef,  Input,  Component} from '@angular/core';
     selector: '[evechart]',
     template: "<div></div>"
 })
-export class EChartComponent {
+export class EveChartComponent {
     @Input()
     chartOption?: any;
 

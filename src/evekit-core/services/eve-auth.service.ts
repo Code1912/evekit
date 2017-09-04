@@ -6,15 +6,15 @@ import { Injectable  } from '@angular/core';
 import {Router,ActivatedRouteSnapshot, RouterStateSnapshot,CanActivate} from '@angular/router';
 import {Http} from "@angular/http";
 import {  Observable} from "rxjs";
-import {CookieService} from "./cookie.service";
+import {EveCookieService} from "./eve-cookie.service";
 @Injectable()
-export  class  AuthService implements CanActivate {
+export  class  EveAuthService implements CanActivate {
     private apiAddress = "http://127.0.0.1:7777";
     private _userInfo: UserInfo;
     public get userInfo(){
         return this._userInfo;
     }
-    constructor(private  router: Router, private  http: Http,private  cookie:CookieService) {
+    constructor(private  router: Router, private  http: Http,private  cookie:EveCookieService) {
     }
 
     isLogin(): boolean {

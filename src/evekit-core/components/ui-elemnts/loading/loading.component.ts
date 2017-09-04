@@ -3,17 +3,18 @@
  * Date  : 2016/10/3 (́>◞౪◟<‵)ﾉｼ
  */
 import {Component, OnInit, OnDestroy, AfterContentInit} from '@angular/core';
-import {EventService} from "../../services";
+import {EveEventService} from "../../../services";
 @Component({
     selector: 'loading',
     templateUrl: 'loading.component.html',
+    styleUrls:["loading.component.css"]
    
 })
 export class LoadingComponent implements OnInit,OnDestroy,AfterContentInit {
     public  isShow:boolean=false;
     private  removeFunc:Function;
 
-    constructor(private  rootEventService:EventService) {
+    constructor(private  rootEventService:EveEventService) {
 
     }
     ngOnInit() {

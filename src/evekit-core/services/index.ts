@@ -2,15 +2,24 @@
  * Created by Code1912 on 2016/10/14.
  */
 
-import {EventService} from "./event.service";
-import {LoadingService} from "./loading.service";
+import {EveEventService} from "./eve-event.service";
+import {EveLoadingService} from "./eve-loading.service";
 import {EveHttpService} from "./eve-http.service";
-import {AuthService,UserInfo} from "./auth.service";
-import {CookieService} from "./cookie.service";
-import {AlertService} from "./alert.service";
+import {EveAuthService,UserInfo} from "./eve-auth.service";
+import {EveCookieService} from "./eve-cookie.service";
+import {EveAlertService} from "./eve-alert.service";
 import {UtilService} from "./util.service";
+import {EveMessengerService} from "./eve-messenger.service";
 
 export {
-    AlertService, EventService, LoadingService, EveHttpService, AuthService, CookieService,UserInfo,UtilService
+    EveAlertService,
+    EveEventService,
+    EveLoadingService,
+    EveHttpService,
+    EveAuthService,
+    EveCookieService,
+    UserInfo,
+    UtilService,
+    EveMessengerService
 }
-export const ALL_SERVICES = [AlertService, EventService, LoadingService, EveHttpService, AuthService, CookieService,UtilService]
+export const ALL_SERVICES = [EveAlertService, EveEventService, EveLoadingService, EveHttpService, EveAuthService, EveCookieService,UtilService,EveMessengerService]

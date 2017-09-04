@@ -7,14 +7,14 @@ import {
     RequestMethod, URLSearchParams, ResponseContentType
 } from "@angular/http"
 import {Observable} from "rxjs";
-import {LoadingService} from "./loading.service";
-import {AlertService} from "./alert.service";
+import {EveLoadingService} from "./eve-loading.service";
+import {EveAlertService} from "./eve-alert.service";
 
 @Injectable()
 export class EveHttpService {
     constructor(private  http: Http,
-                private  loadingService: LoadingService,
-                private alertService: AlertService) {
+                private  loadingService: EveLoadingService,
+                private alertService: EveAlertService) {
 
     }
 

@@ -3,7 +3,7 @@ import {Injectable} from "@angular/core";
  * Created by Code1912 on 2016/10/16.
  */
 @Injectable()
-export  class  CookieService{
+export  class  EveCookieService{
 
     public  getCookie(name: string): string  {
         if (this.check(name)) {
@@ -21,11 +21,11 @@ export  class  CookieService{
         }
     }
     /**
-     * Save the CookieService
+     * Save the EveCookieService
      *
-     * @param  {string} name CookieService's identification
-     * @param  {string} value CookieService's value
-     * @param  {number} expires CookieService's expiration date in days from now. If it's undefined the cookie is a session CookieService
+     * @param  {string} name EveCookieService's identification
+     * @param  {string} value EveCookieService's value
+     * @param  {number} expires EveCookieService's expiration date in days from now. If it's undefined the cookie is a session EveCookieService
      * @param  {string} path Path relative to the domain where the cookie should be avaiable. Default /
      * @param  {string} domain Domain where the cookie should be avaiable. Default current domain
      * @param  {boolean} secure If true, the cookie will only be available through a secured connection

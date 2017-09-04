@@ -8,7 +8,7 @@ import {NoopAnimationsModule, BrowserAnimationsModule} from "@angular/platform-b
 import {ALL_COMPONENTS} from "./components/index";
 import {ALL_SERVICES} from "./services/index";
 import {ALL_DIRECTIVES} from "./directives";
-import  "./app.css"
+import "./app.module.css"
 @NgModule({
     providers: [...ALL_SERVICES],
     imports: [

@@ -3,9 +3,8 @@
  * Date  : 2016/10/3 (́>◞౪◟<‵)ﾉｼ
  */
 'use strict';
-let args = require('minimist')(process.argv.slice(2));
+
 let through=require("through2")
-args.env = args.env || "dev";
 //console.log(args)
 let ts = require("gulp-typescript");
 let exec = require('child_process').exec;
@@ -26,6 +25,7 @@ let addsrc = require('gulp-add-src');
 let del = require("del");
 let logger = require('gulp-logger');
 let helpers = require('./helpers');
+let args = helpers.args();
 // import embedTemplates   from  'gulp-angular-embed-templates';
 colors.setTheme({
     silly: 'rainbow',
@@ -72,10 +72,12 @@ let assetJS = ["./src/assets/js/jQuery/jquery-3.1.1.js",
     "./src/assets/js/extend/extend.js",
     "./src/assets/js/slimscroll/jquery.slimscroll.js",
     "./src/assets/js/adminLTE/app.js",
-    "node_modules/core-js/client/shim.min.js",
-    "node_modules/zone.js/dist/zone.js",
+    "./node_modules/core-js/client/shim.min.js",
+    "./node_modules/zone.js/dist/zone.js",
     "./node_modules/rxjs/bundles/Rx.js",
-    "node_modules/reflect-metadata/Reflect.js",
+    "./node_modules/reflect-metadata/Reflect.js",
+    "src/assets/plugins/messenger/js/messenger.js",
+    "src/assets/plugins/messenger/js/messenger-theme-flat.js",
     "./node_modules/@angular/core/bundles/core.umd.js",
     "./node_modules/@angular/compiler/bundles/compiler.umd.js",
     "./node_modules/@angular/common/bundles/common.umd.js",
@@ -93,8 +95,10 @@ let assetCss = [
     "src/assets/css/bootstrap.min.css",
     "src/assets/css/font-awesome.min.css",
     "src/assets/css/AdminLTE.min.css",
-    "src/assets/css/_all-skins.min.css"
-
+    "src/assets/css/_all-skins.min.css",
+    "src/assets/plugins/messenger/css/messenger.css",
+    "src/assets/plugins/messenger/css/messenger-spinner.css",
+    "src/assets/plugins/messenger/css/messenger-theme-flat.css"
 ];
 
 
@@ -102,17 +106,29 @@ gulp.task('clean', (done) =>
     del(['./dist/'], done)
 );
 
+function minifyJS(gulpStream) {
+    if(args.minify){
+        return gulpStream.pipe(uglify({mangle:false}))
+    }
+    return gulpStream;
+}
+function minifyCSS(gulpStream) {
+    if(args.minify){
+        return gulpStream.pipe(cssmin())
+    }
+    return gulpStream;
+}
+
 
 gulp.task("utility:js", function () {
-    return gulp.src(assetJS)
-        .pipe(concat("asset.js"))
+    return minifyJS(gulp.src(assetJS)
+        .pipe(concat("asset.js")))
         .pipe(gulp.dest('dist/assets/js'));
 });
 
 gulp.task("utility:css", function () {
-    return gulp.src(assetCss)
-        .pipe(cssmin())
-        .pipe(concat("asset.css"))
+    return minifyCSS(gulp.src(assetCss)
+        .pipe(concat("asset.css")))
         .pipe(gulp.dest('dist/assets/css'));
 });
 gulp.task("utility:fonts", function () {
@@ -162,13 +178,14 @@ gulp.task("dts:evekit-core", function () {
 function dts(module) {
     let src=`./src/modules/${module}/**/*.ts`;
     let dest =`./node_modules/@types/evekit/${module}`;
-    if (module == "evekit-core") {
+    if (module === "evekit-core") {
         src=`./src/evekit-core/**/*.ts`;
         dest = `./node_modules/@types/evekit/core`;
     }
     let tsProject = ts.createProject('tsconfig.json', {
         outDir: dest,
-        declaration: true
+        declaration: true,
+        removeComments:args.env==="prd"
     });
     let tsResult = gulp.src([src]) // or tsProject.src()
         .pipe(tsProject());
@@ -185,6 +202,9 @@ gulp.task("build:evekit-core", (done) => {
 
 function webpackCompile(config, done) {
     config.watch = args.env === "dev";
+    /*config.module.loaders[0].loaders=  config.module.loaders[0].loaders.map(p=>{
+       return `${p}?configFileName=tsconfig.${args.env}.json`;
+    })*/
     if (config.watch) {
         webpack(config).watch(300, function (err, stats) {
             handleError(err, stats)
@@ -215,20 +235,21 @@ gulp.task('browser-sync', function () {
     //  gulp.run("watch");
 });
 gulp.task("serve", done => {
-    let cmdStr = 'npm run serve';
+    let cmdStr = 'node serve/server';
     exec(cmdStr, function (err, stdout, stderr) {
         if (err) {
             console.log(err);
         }
     });
+    console.log("--------------run serve--------------".blue)
     done();
 });
 gulp.task('default', function (done) {
-    return gulp.series("clean", "utility","dts:evekit-core", "build:evekit-core",  "build:modules", "serve", "browser-sync")(done);
+    return gulp.series("serve","build", "browser-sync")(done);
     // gulp.series("clean", "utility", "build:modules", "browser-sync", "serve", done)();
 });
 gulp.task('build', function (done) {
-    return gulp.series("clean", "utility","dts:evekit-core", "build:evekit-core",  "build:modules",   "browser-sync")(done);
+    return gulp.series("clean", "utility","dts:evekit-core", "build:evekit-core",  "build:modules")(done);
     // gulp.series("clean", "utility", "build:modules", "browser-sync", "serve", done)();
 });
 
