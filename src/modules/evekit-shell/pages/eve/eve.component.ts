@@ -24,10 +24,14 @@ export class EveComponent implements OnInit, AfterContentInit {
                 private  loadingService: EveLoadingService,
                 private alertService: EveAlertService,
                 private  authService: EveAuthService) {
+
         this.ele.nativeElement.className = "wrapper";
     }
 
     ngAfterContentInit() {
+        if(!$("body").hasClass("fixed")){
+            $("body").addClass("fixed") ;
+        }
         $.AdminLTE.load();
     }
 

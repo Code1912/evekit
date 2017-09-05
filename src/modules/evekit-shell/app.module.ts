@@ -9,20 +9,23 @@ import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
 import {HttpModule} from "@angular/http" ;
 import {EvekitCoreModule} from "evekit/core";
+import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
     providers: [
         {provide: APP_BASE_HREF, useValue: ''}
     ],
     imports: [
-        CommonModule
-        , HttpModule
-        , BrowserModule
-        , RouterModule
-        , FormsModule
-        , ReactiveFormsModule
-        ,EvekitCoreModule
-        , AppRoutes
+        BrowserModule,
+        CommonModule,
+        BrowserAnimationsModule,
+        NoopAnimationsModule,
+        HttpModule,
+        RouterModule,
+        FormsModule,
+        ReactiveFormsModule,
+        EvekitCoreModule,
+         AppRoutes
     ],
     declarations: [
         ...ALL_PAGES

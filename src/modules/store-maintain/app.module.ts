@@ -12,7 +12,7 @@ import { BrowserModule }  from '@angular/platform-browser';
 import { RouterModule} from '@angular/router';
 import { FeedbackModule} from "./feedback/app"
  
- import {RoutePathConfig,EvekitCoreModule} from  "evekit/core"
+ import { EvekitCoreModule} from  "evekit/core"
 
 
 @NgModule({
@@ -23,8 +23,6 @@ import { FeedbackModule} from "./feedback/app"
         }
     ])]
 })
-
-@RoutePathConfig("store-maintain")
 export class StoreMaintainModule {
 
 }

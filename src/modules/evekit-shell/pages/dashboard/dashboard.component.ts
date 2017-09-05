@@ -4,24 +4,18 @@
 import {Component, OnInit, AfterViewInit, ViewChild} from '@angular/core';
 import {Router} from "@angular/router";
 import {EveAlertService ,EveHttpService,EveMessengerService } from 'evekit/core';
-import {EveWindowOptions,EveWindowComponent} from "evekit/core";
 
 @Component({
     selector: 'div[dashboard]',
     templateUrl: 'dashboard.component.html'
 })
 export class DashboardComponent implements OnInit,AfterViewInit {
-    testOptions:EveWindowOptions;
+
     eveCb=true;
-    @ViewChild(EveWindowComponent)
-    testWindow:EveWindowComponent;
+    private shown: boolean;
 
     constructor(private  alertService:EveAlertService,private  http:EveHttpService,private  router:Router,private  messenger:EveMessengerService) {
 
-        this.testOptions=new EveWindowOptions();
-        this.testOptions.height=500;
-        this.testOptions.width=600;
-        this.testOptions.title="test window title";
     }
     msg(){
         this.messenger.confirm("<div>sdfsdfsdf</div>",()=>{
@@ -64,7 +58,7 @@ export class DashboardComponent implements OnInit,AfterViewInit {
         }
     }
     btnOpenWindow(){
-        this.testWindow.eveWindow.open()
+        this.shown=true;
     }
     testHttp(hideLoading:boolean){
         this.http.get("http://www.google.hk",{ hideLoading:hideLoading}).subscribe(res=>{

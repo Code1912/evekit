@@ -10,9 +10,9 @@
         <button (click)="btnOpenWindow()">Test Window</button>
     </div>
 
-    <div eveWindow     [eveWindowOptions]="testOptions">
+    <eve-modal   header="test" [(shown)]="shown">
         sdddddddddddddd
-    </div>
+    </eve-modal >
 
     <div>
         <button (click)="testHttp(false)">TestHttp</button>

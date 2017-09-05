@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from "@angular/common";
-import {FormsModule} from "@angular/forms";
-import {HttpModule} from "@angular/http";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {HttpModule, JsonpModule} from "@angular/http";
 import {RouterModule} from "@angular/router";
 import {BrowserModule} from "@angular/platform-browser";
 import {NoopAnimationsModule, BrowserAnimationsModule} from "@angular/platform-browser/animations";
@@ -15,17 +15,21 @@ import "./app.module.css"
         CommonModule,
         FormsModule,
         HttpModule,
-        BrowserModule,
         RouterModule,
-        NoopAnimationsModule,
-        BrowserAnimationsModule],
+        JsonpModule,
+        ReactiveFormsModule],
     declarations: [
         ...ALL_DIRECTIVES,
         ...ALL_COMPONENTS,
     ],
     exports: [
         ...ALL_DIRECTIVES,
-        ...ALL_COMPONENTS
+        ...ALL_COMPONENTS,
+        CommonModule,
+        HttpModule,
+        JsonpModule,
+        FormsModule,
+        ReactiveFormsModule,
     ]
 
 })
