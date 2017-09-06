@@ -1,18 +1,19 @@
 /**
  * Created by Code1912 on 2016/10/24.
  */
-import {Component, OnInit, ElementRef, Input} from '@angular/core';
+import {Component, OnInit, ElementRef, Input, OnDestroy} from '@angular/core';
 import {EveTabsComponent} from "./tabs";
 
 @Component({
-    selector: 'evetab',
+    selector: 'eve-tab',
     template:`
             <div [hidden]="!active"  class="tab-pane">
                <ng-content></ng-content>
             </div>
             `
 })
-export class EveTabComponent implements OnInit {
+export class EveTabComponent implements OnInit,OnDestroy {
+
     @Input()
     tabTitle:string;
     @Input()
@@ -22,5 +23,7 @@ export class EveTabComponent implements OnInit {
     }
 
     ngOnInit() { }
-
+    ngOnDestroy(): void {
+        this.tabs.removeTab(this);
+    }
 }

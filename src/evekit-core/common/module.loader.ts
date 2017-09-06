@@ -5,6 +5,7 @@
 import {ScriptLoader} from "./script.loader";
 import {StyleLoader} from "./style.loader";
 import {Router, Route, NavigationError, NavigationEnd} from "@angular/router"
+import {EmptyModule} from "./empty.module";
 
 export class  ModuleLoader{
 
@@ -20,7 +21,7 @@ export class  ModuleLoader{
                 let AppModule = module.AppModule;
                 resolve(AppModule);
             }).catch(res=>{
-                resolve()
+                resolve(EmptyModule)
             });
         });
 
