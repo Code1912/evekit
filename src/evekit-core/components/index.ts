@@ -9,6 +9,7 @@ import {EveTabsComponent} from "./ui-elemnts/tabs/tabs";
 import {EveTabComponent} from "./ui-elemnts/tabs/tab";
 import {EveCheckboxComponent} from "./forms/eve-checkbox/eve-checkbox.component";
 import {EveModalComponent} from "./ui-elemnts/modal/eve-modal.component";
+import {EveDateTimeComponent} from "./forms/eve-datatiempicker/eve-date-time.component";
 
 export * from "./ui-elemnts/alert/alert";
 
@@ -21,7 +22,8 @@ export {
     EveModalComponent,
     LoadingComponent,
     EveChartComponent,
-    EveCheckboxComponent
+    EveCheckboxComponent,
+    EveDateTimeComponent
 }
 
 export const ALL_COMPONENTS = [EveTabsComponent,
@@ -31,5 +33,7 @@ export const ALL_COMPONENTS = [EveTabsComponent,
     EveModalComponent,
     LoadingComponent,
     EveChartComponent,
-    EveCheckboxComponent];
+    EveCheckboxComponent,
+    EveDateTimeComponent];
+$.datetimepicker.setLocale("zh");
  

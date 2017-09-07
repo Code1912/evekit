@@ -4,5 +4,5 @@
 export  * from "./module.loader"
 export  * from "./script.loader"
 export  * from "./style.loader"
-import "es6.extend"
+import "./es6-extend.ts"
 

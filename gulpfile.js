@@ -4,7 +4,8 @@
  */
 'use strict';
 
-let through=require("through2")
+let through=require("through2");
+let assets=require("./assets.json")
 //console.log(args)
 let ts = require("gulp-typescript");
 let exec = require('child_process').exec;
@@ -66,41 +67,7 @@ function handleError(err, stats, done) {
         modules.push(item);
     });
 })();
-let assetJS = ["./src/assets/js/jQuery/jquery-3.1.1.js",
-    "./src/assets/js/echarts/echarts.min.js",
-    "./src/assets/js/bootstrap/bootstrap.js",
-    "./src/assets/js/extend/extend.js",
-    "./src/assets/js/slimscroll/jquery.slimscroll.js",
-    "./src/assets/js/adminLTE/app.js",
-    "./node_modules/core-js/client/shim.min.js",
-    "./node_modules/zone.js/dist/zone.js",
-    "./node_modules/rxjs/bundles/Rx.js",
-    "./node_modules/reflect-metadata/Reflect.js",
-    "src/assets/plugins/messenger/js/messenger.js",
-    "src/assets/plugins/messenger/js/messenger-theme-flat.js",
-    "./node_modules/@angular/core/bundles/core.umd.js",
-    "./node_modules/@angular/compiler/bundles/compiler.umd.js",
-    "./node_modules/@angular/common/bundles/common.umd.js",
-    "./node_modules/@angular/platform-browser/bundles/platform-browser.umd.js",
-    "./node_modules/@angular/forms/bundles/forms.umd.js",
-    "./node_modules/@angular/http/bundles/http.umd.js",
-    "./node_modules/@angular/animations/bundles/animations.umd.js",
-    "./node_modules/@angular/animations/bundles/animations-browser.umd.js",
-
-    "./node_modules/@angular/platform-browser/bundles/platform-browser-animations.umd.js",
-    "./node_modules/@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js",
-    "./node_modules/@angular/router/bundles/router.umd.js"];
 let reload = browserSync.reload;
-let assetCss = [
-    "src/assets/css/bootstrap.min.css",
-    "src/assets/css/font-awesome.min.css",
-    "src/assets/css/AdminLTE.min.css",
-    "src/assets/css/_all-skins.min.css",
-    "src/assets/plugins/messenger/css/messenger.css",
-    "src/assets/plugins/messenger/css/messenger-spinner.css",
-    "src/assets/plugins/messenger/css/messenger-theme-flat.css"
-];
-
 
 gulp.task('clean', (done) =>
     del(['./dist/'], done)
@@ -121,13 +88,13 @@ function minifyCSS(gulpStream) {
 
 
 gulp.task("utility:js", function () {
-    return minifyJS(gulp.src(assetJS)
+    return minifyJS(gulp.src(assets.assetJS)
         .pipe(concat("asset.js")))
         .pipe(gulp.dest('dist/assets/js'));
 });
 
 gulp.task("utility:css", function () {
-    return minifyCSS(gulp.src(assetCss)
+    return minifyCSS(gulp.src(assets.assetCss)
         .pipe(concat("asset.css")))
         .pipe(gulp.dest('dist/assets/css'));
 });
@@ -150,8 +117,9 @@ gulp.task('utility', function (done) {
 
 function buildModuleTask(moduleName) {
     let taskName = `build:evekit[${moduleName}]`;
+    //todo:需要加上gulp-newer
     gulp.src([`src/modules/${moduleName}/resources/**/*`, `!src/modules/${moduleName}/**/*.js`])
-        .pipe(gulp.dest('dist/assets/img'));
+        .pipe(gulp.dest(`dist/modules/${moduleName}/resources`));
     gulp.task(taskName, function (done) {
         let config = Object.create(webpackConfig);
         let key = `evekit[${moduleName}]`;
@@ -248,7 +216,7 @@ gulp.task('default', function (done) {
     return gulp.series("serve","build", "browser-sync")(done);
 });
 gulp.task('build', function (done) {
-    return gulp.series("clean", "utility","dts:evekit-core", "build:evekit-core",  "build:modules")(done);
+    return gulp.series("clean", gulp.parallel(["utility","dts:evekit-core", "build:evekit-core"]),  "build:modules")(done);
 });
 
 

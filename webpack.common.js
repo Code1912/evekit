@@ -73,6 +73,9 @@ let config = {
         new ExtractTextPlugin('[name].css'),
         new WatchIgnorePlugin([
             helpers.root( 'node_modules'),
+          //  helpers.root( 'src'),
+            helpers.root( 'build'),
+            helpers.root( 'dist'),
         ]),
     ],
     externals: [{
@@ -129,9 +132,11 @@ let config = {
 })();
 if(args.minify){
     config.plugins.push(  new webpack.optimize.UglifyJsPlugin({
-        mangle:false,
+        mangle:{
+            keep_fnames:true
+        },
         compress:true
-    }))
+    }));
     config.plugins.push( new OptimizeCssAssetsPlugin({
         assetNameRegExp: /\.css$/g,
         cssProcessor: require('cssnano'),
