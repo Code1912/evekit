@@ -15,7 +15,8 @@
     bottom:35%;
     width: 100px;
     height: 100px;
-    position: absolute;
+    position: fixed;
+    z-index: 10000;
     left: 45%;
     right: 45%;
 }

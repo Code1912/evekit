@@ -45,7 +45,7 @@ export class EveComponent implements OnInit, AfterContentInit {
     }
 
     doLogout() {
-        this.alertService.confirm("是否退出？", null,() => {
+        this.alertService.confirm("是否退出？", () => {
             this.authService.logOut();
 
         },);
