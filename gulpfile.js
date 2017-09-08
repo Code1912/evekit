@@ -174,7 +174,10 @@ function webpackCompile(config, done) {
        return `${p}?configFileName=tsconfig.${args.env}.json`;
     })*/
     if (config.watch) {
-        webpack(config).watch(300, function (err, stats) {
+        webpack(config).watch({
+            aggregateTimeout: 300,
+            ignored: [/node_modules/,/dist/]
+        }, function (err, stats) {
             handleError(err, stats)
             if(config.entry["evekit-core"]){
                 dts("evekit-core")

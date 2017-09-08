@@ -62,6 +62,10 @@ export class EveDateTimeComponent implements OnInit,AfterViewInit,OnChanges {
         this.onTouchedCallback();
     }
     writeValue(val: any): void{
+        if(/^\d{13}$/.test(val)){
+            val=this.eleRef.nativeElement.value=new Date(val).format();
+            this.onChangeCallback(val);
+        }
         if (val !== this._value) {
             this._value = val;
         }

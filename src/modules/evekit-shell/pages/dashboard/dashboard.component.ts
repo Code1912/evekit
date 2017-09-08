@@ -10,7 +10,8 @@ import {EveAlertService ,EveHttpService,EveMessengerService } from 'evekit/core'
     templateUrl: 'dashboard.component.html'
 })
 export class DashboardComponent implements OnInit,AfterViewInit {
-    dateTime = "2017-12-11 12:36";
+  //  dateTime = "2017-12-11 12:36";
+    dateTime=Date.now();
     eveCb=true;
     private shown: boolean;
 

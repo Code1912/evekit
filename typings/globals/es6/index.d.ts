@@ -1,7 +1,7 @@
 declare  interface  Date{
     addHours(h:number);
     addMinutes(m:number);
-    format(str):string
+    format(str?:string):string
 }
 
 declare interface String{

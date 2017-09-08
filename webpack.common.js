@@ -73,7 +73,6 @@ let config = {
         new ExtractTextPlugin('[name].css'),
         new WatchIgnorePlugin([
             helpers.root( 'node_modules'),
-          //  helpers.root( 'src'),
             helpers.root( 'build'),
             helpers.root( 'dist'),
         ]),
@@ -109,7 +108,7 @@ let config = {
     }],
     watchOptions: {
         aggregateTimeout: 300,
-        ignored: /node_modules/
+        ignored: [/node_modules/,/dist/]
     }
 };
 (function () {
