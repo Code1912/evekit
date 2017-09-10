@@ -1,0 +1,58 @@
+<div class="box">
+    <div class="box-body">
+
+    <table   class="table table-bordered table-striped  table-hover dataTable" role="grid"  >
+        <thead>
+        <tr  role="row">
+          <th   *ngIf="toolbarTemplate" [attr.colspan]="columns?.length+(detailTemplate?1:0)">
+                  <ng-container  [ngTemplateOutlet]="toolbarTemplate?.templateRef" > </ng-container>
+          </th>
+        </tr>
+        <tr role="row">
+            <th *ngIf="detailTemplate" style="width: 1px!important;">
+
+            </th>
+           <ng-container  *ngFor="let column of columns;let index=index" >
+               <th  *ngIf="column.visible" class="sorting"
+                     [attr.aria-label]="column.field" >
+                   <span  *ngIf="!column.headerTemplate" [innerText]="column.name"></span>
+                   <ng-template [ngIf]="column.headerTemplate">
+                       <ng-container   [ngTemplateOutlet]="column.headerTemplate.templateRef"
+                                       [ngTemplateOutletContext]="{$implicit:column}">
+                       </ng-container>
+                   </ng-template>
+
+               </th>
+           </ng-container>
+
+        </thead>
+        <tbody>
+        <ng-container *ngFor="let dataItem of data;let rowIndex=index">
+            <tr role="row" class="{{rowIndex%2==0?'odd':'even'}}"  >
+                <td  *ngIf="detailTemplate" class="text-center eve-grid-icon"(click)="onRowDetailShowClick(dataItem)"  >
+                    <i class="fa fa-{{dataItem?.__$detailShown?'minus':'plus'}}"></i>
+                </td>
+                <ng-container  *ngFor="let column of columns; " >
+                    <td  *ngIf="column.visible">
+                        <span  *ngIf="!column.cellTemplate" [innerText]="dataItem[column.field]"></span>
+                        <ng-template [ngIf]="column.cellTemplate">
+                            <ng-container   [ngTemplateOutlet]="column.cellTemplate.templateRef"
+                                            [ngTemplateOutletContext]="{$implicit:dataItem}">
+                            </ng-container>
+                        </ng-template>
+                    </td>
+                </ng-container>
+            </tr>
+            <tr *ngIf="dataItem?.__$detailShown">
+                <td [attr.colspan]="columns?.length">
+                    <ng-container   [ngTemplateOutlet]="detailTemplate.templateRef"
+                                    [ngTemplateOutletContext]="{$implicit:dataItem,rowIndex:rowIndex}">
+                    </ng-container>
+                </td>
+            </tr>
+        </ng-container>
+        </tbody>
+    </table>
+    </div>
+    {{columns?.length}}
+</div>

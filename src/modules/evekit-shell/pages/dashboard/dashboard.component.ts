@@ -12,12 +12,20 @@ import {EveAlertService ,EveHttpService,EveMessengerService } from 'evekit/core'
 export class DashboardComponent implements OnInit,AfterViewInit {
   //  dateTime = "2017-12-11 12:36";
     time="12:36";
+    radioValue;
     date="2017-5-5"
     widgetCollapse=false
     dateTime="2017-12-11 12:36"
     eveCb=true;
     private shown: boolean;
 
+
+    dataList=[
+        {id:1,name:"abc",age:12},
+        {id:2,name:"222",age:22},
+        {id:3,name:"3333",age:33},
+        {id:4,name:"4444",age:444}
+    ]
     constructor(private  alertService:EveAlertService,private  http:EveHttpService,private  router:Router,private  messenger:EveMessengerService) {
 
     }

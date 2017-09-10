@@ -14,9 +14,14 @@ import {EveWidgetComponent} from "./ui-elemnts/widget/eve-widget.component";
 import {EveDateComponent} from "./forms/eve-date-time-picker/eve-date.component";
 import {EveTimeComponent} from "./forms/eve-date-time-picker/eve-time.component";
 import {EveRadioComponent} from "./forms/eve-radio/eve-radio.component";
+import {EveGridDetailTemplateDirective} from "./ui-elemnts/grid/eve-grid-detail.directive";
+import {EveGridColumnDirective} from "./ui-elemnts/grid/eve-grid-column.directive";
+import {EveGridToolbarTemplateDirective} from "./ui-elemnts/grid/eve-grid-toolbar.dirctive";
+import {EveGridComponent} from "./ui-elemnts/grid/eve-grid.component";
+import {EveGridHeaderTemplateDirective} from "./ui-elemnts/grid/eve-grid-header.dirctive";
+import {EveGridCellTemplateDirective} from "./ui-elemnts/grid/eve-grid-cell.direcitve";
 
 export * from "./ui-elemnts/alert/alert";
-
 
 export {
     EveTabsComponent,
@@ -31,7 +36,12 @@ export {
     EveWidgetComponent,
     EveDateComponent,
     EveTimeComponent,
-    EveRadioComponent
+    EveRadioComponent,
+    EveGridDetailTemplateDirective,
+    EveGridColumnDirective,
+    EveGridToolbarTemplateDirective,
+    EveGridComponent,
+    EveGridHeaderTemplateDirective
 }
 
 export const ALL_COMPONENTS = [EveTabsComponent,
@@ -46,5 +56,11 @@ export const ALL_COMPONENTS = [EveTabsComponent,
     EveWidgetComponent,
     EveDateComponent,
     EveTimeComponent,
-    EveRadioComponent];
+    EveRadioComponent,
+    EveGridDetailTemplateDirective,
+    EveGridColumnDirective,
+    EveGridToolbarTemplateDirective,
+    EveGridCellTemplateDirective,
+    EveGridComponent,
+    EveGridHeaderTemplateDirective];
  

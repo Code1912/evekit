@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<div class="eve-radio">
+    <input (blur)="onBlur()"   [disabled]="disabled" [id]="id" type="radio"  [(ngModel)]="value"  [attr.name] ="name"/>
+    <label [for]="id">
+               <span [innerHTML]="text">
 
-</body>
-</html>
+               </span>
+        <ng-content></ng-content>
+    </label>
+</div>

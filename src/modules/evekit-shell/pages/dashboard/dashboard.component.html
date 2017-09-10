@@ -1,5 +1,25 @@
 <div style="height: 1000px">
+    <eve-grid [data]="dataList">
 
+        <eve-grid-column  name="@id" field="id" [visible]="true">
+            <ng-template eve-grid-header  let-header >
+                1111:{{header.name}}
+            </ng-template>
+            <ng-template eve-grid-cell  let-dataItem>
+                id:{{dataItem.id}}
+            </ng-template>
+        </eve-grid-column>
+        <eve-grid-column  name="name" field="name">
+        </eve-grid-column>
+        <eve-grid-column  name="age" field="age">
+        </eve-grid-column>
+        <ng-template eve-grid-toolbar>
+            <button class="btn btn-sm btn-info"><i class="fa fa-plus"></i></button>
+        </ng-template>
+        <ng-template eve-grid-detail let-dataItem let-rowIndex=rowIndex>
+           this is detail {{rowIndex}},ID: {{dataItem.id}}
+        </ng-template>
+    </eve-grid>
     <button class="btn btn-sm btn-primary" (click)="msg(0)" >Messager</button>
     <button class="btn btn-sm btn-danger" (click)="btnClick(0)" >Test alert error</button>
     <button class="btn btn-sm btn-info" (click)="btnClick(1)" >Test alert info</button>
@@ -10,7 +30,7 @@
         <button (click)="btnOpenWindow()">Test Window</button>
     </div>
 
-    <eve-modal   header="test" [(shown)]="shown">
+    <eve-modal   header="test" [(shown)]="shown" [allowDrag]="true">
         sdddddddddddddd
     </eve-modal >
 
@@ -21,7 +41,9 @@
     <div>
         <button (click)="testHttp(true)">TestHttp With No Loading</button>
     </div>
-
+    radioValue:{{radioValue}}
+    <eve-radio [(ngModel)]="radioValue"  name="sss"  [bindValue]="1">testse</eve-radio>
+    <eve-radio [(ngModel)]="radioValue"  name="sss" [bindValue]="2">testse</eve-radio>
     <eve-checkbox [(ngModel)]="eveCb" (change)="change(val)"></eve-checkbox>
 
     <eve-checkbox [(ngModel)]="eveCb" (change)="change(val)" [disabled]="true"></eve-checkbox>
@@ -50,17 +72,19 @@
     <div class="row">
         <div class="col-md-6">
             widgetCollapse:{{widgetCollapse}}
-            <eve-widget header="test1" [showCollapseBtn]="true" [(collapse)]="widgetCollapse">
+            <eve-widget   header="test1" [showCollapseBtn]="true" [(collapse)]="widgetCollapse">
                 sdfsdfsdf<br>
                 323333
             </eve-widget>
         </div>
         <div class="col-md-6">
-            <eve-widget type="danger" header="22222" [showCollapseBtn]="true" [collapse]="true">
+            <eve-widget type="danger"  icon="car" header="22222" [showCollapseBtn]="true" [collapse]="true">
                 sdfsdfsdf<br>
                 323333
             </eve-widget>
         </div>
 
     </div>
+
+
 </div>

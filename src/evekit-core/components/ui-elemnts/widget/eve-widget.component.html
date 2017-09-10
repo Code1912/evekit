@@ -1,6 +1,6 @@
 <div class="box box-{{type||'default'}}">
     <div class="box-header with-border">
-        <h3 class="box-title">{{header}}</h3>
+        <h3 class="box-title"><i *ngIf="icon" class="fa fa-{{icon}}"></i>   {{header}} </h3>
         <div class="box-tools pull-right" *ngIf="showCollapseBtn">
             <button (click)="onToggleClick()" type="button" class="btn btn-box-tool"  >
                 <i class="fa {{collapse?'fa-plus':'fa-minus'}}"></i>

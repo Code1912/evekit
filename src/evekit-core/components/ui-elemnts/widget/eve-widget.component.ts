@@ -14,6 +14,8 @@ export class EveWidgetComponent implements OnInit {
     type: string = "default";
 
     @Input()
+    icon:string="";
+    @Input()
     showCollapseBtn: boolean = true;
 
     @Input()
