@@ -25,12 +25,40 @@
     <eve-checkbox [(ngModel)]="eveCb" (change)="change(val)"></eve-checkbox>
     dateTime:{{dateTime}}
     <eve-date-time   [(ngModel)]="dateTime"></eve-date-time>
+
+    <p>
+        eve-time:{{time}}
+        <eve-time [(ngModel)]="time"></eve-time>
+    </p>
+    <p>
+        eve-date:{{date}}
+        <eve-date [(ngModel)]="date"></eve-date>
+    </p>
     <p>
         ...
         <eve-tabs>
-        <eve-tab [tabTitle]="'111'" [active]="true">1111</eve-tab>
-        <eve-tab [tabTitle]="'222'">222</eve-tab>
-    </eve-tabs>
+            <eve-tab [header]="'111'" [active]="true">1111</eve-tab>
+            <eve-tab header="222" icon="user">222</eve-tab>
+        </eve-tabs>
     </p>
 
+
+
+
+    <div class="row">
+        <div class="col-md-6">
+            widgetCollapse:{{widgetCollapse}}
+            <eve-widget header="test1" [showCollapseBtn]="true" [(collapse)]="widgetCollapse">
+                sdfsdfsdf<br>
+                323333
+            </eve-widget>
+        </div>
+        <div class="col-md-6">
+            <eve-widget type="danger" header="22222" [showCollapseBtn]="true" [collapse]="true">
+                sdfsdfsdf<br>
+                323333
+            </eve-widget>
+        </div>
+
+    </div>
 </div>

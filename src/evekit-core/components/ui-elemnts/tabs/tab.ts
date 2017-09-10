@@ -15,7 +15,10 @@ import {EveTabsComponent} from "./tabs";
 export class EveTabComponent implements OnInit,OnDestroy {
 
     @Input()
-    tabTitle:string;
+    icon:string;
+
+    @Input()
+    header:string;
     @Input()
     active:boolean;
     constructor(private  tabs:EveTabsComponent) {

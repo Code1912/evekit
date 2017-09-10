@@ -10,7 +10,10 @@ import {EveTabComponent} from "./tab";
         <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
                 <li (click)="selectTab(tab)" *ngFor="let tab of tabs" [ngClass]="{'active': tab.active}">
-                    <a href="javascript:void(0)" data-toggle="tab" aria-expanded="false" [innerText]="tab.tabTitle"></a>
+                    <a href="javascript:void(0)" data-toggle="tab" aria-expanded="false"  >
+                        <span [innerText]="tab.header"></span>
+                           <i *ngIf="tab.icon" class="fa fa-{{tab.icon}}"></i>
+                    </a>
                 </li>
             </ul>
             <div class="tab-content">

@@ -129,6 +129,10 @@ let config = {
     }
 
 })();
+config.devtool="source-map";
+if(args.env==="dev"){
+
+}
 if(args.minify){
     config.plugins.push(  new webpack.optimize.UglifyJsPlugin({
         mangle:{

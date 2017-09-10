@@ -11,7 +11,10 @@ import {EveAlertService ,EveHttpService,EveMessengerService } from 'evekit/core'
 })
 export class DashboardComponent implements OnInit,AfterViewInit {
   //  dateTime = "2017-12-11 12:36";
-    dateTime=Date.now();
+    time="12:36";
+    date="2017-5-5"
+    widgetCollapse=false
+    dateTime="2017-12-11 12:36"
     eveCb=true;
     private shown: boolean;
 
@@ -29,7 +32,8 @@ export class DashboardComponent implements OnInit,AfterViewInit {
 
     }
     change(eve){
-       console.log("srouce:",this.eveCb,"       new:",eve)
+       console.log("srouce:",this.eveCb,"       new:",eve);
+
     }
     ngOnInit() {
 

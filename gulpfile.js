@@ -50,9 +50,31 @@ function handleError(err, stats, done) {
             gutil.log('webpack: output ', gutil.colors.green(key));
         });
     }
-    if (stats.compilation.errors && stats.compilation.errors.length) {
-        gutil.log('webpack:', stats.compilation.errors);
+    let options = {
+        colors: true,
+        children: false,
+        modules: false,
+    };
+
+    if (stats.hasErrors()) {
+        options = {
+            colors: true,
+            hash: false,
+            version: false,
+            timings: false,
+            assets: false,
+            chunks: false,
+            chunkModules: false,
+            modules: false,
+            children: false,
+            cached: false,
+            reasons: false,
+            source: false,
+            errorDetails: true,
+            chunkOrigins: false
+        };
     }
+    gutil.log('webpack:', stats.toString(options));
     if (done) {
         done();
     }
@@ -118,7 +140,7 @@ gulp.task('utility', function (done) {
 function buildModuleTask(moduleName) {
     let taskName = `build:evekit[${moduleName}]`;
     //todo:需要加上gulp-newer
-    gulp.src([`src/modules/${moduleName}/resources/**/*`, `!src/modules/${moduleName}/**/*.js`])
+    gulp.src([`src/modules/${moduleName}/resources/**/*.{jpg,jpeg,png,gif}` ])
         .pipe(gulp.dest(`dist/modules/${moduleName}/resources`));
     gulp.task(taskName, function (done) {
         let config = Object.create(webpackConfig);
