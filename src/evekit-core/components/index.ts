@@ -13,6 +13,7 @@ import {EveDateTimeComponent} from "./forms/eve-date-time-picker/eve-date-time.c
 import {EveWidgetComponent} from "./ui-elemnts/widget/eve-widget.component";
 import {EveDateComponent} from "./forms/eve-date-time-picker/eve-date.component";
 import {EveTimeComponent} from "./forms/eve-date-time-picker/eve-time.component";
+import {EveRadioComponent} from "./forms/eve-radio/eve-radio.component";
 
 export * from "./ui-elemnts/alert/alert";
 
@@ -29,7 +30,8 @@ export {
     EveDateTimeComponent,
     EveWidgetComponent,
     EveDateComponent,
-    EveTimeComponent
+    EveTimeComponent,
+    EveRadioComponent
 }
 
 export const ALL_COMPONENTS = [EveTabsComponent,
@@ -43,5 +45,6 @@ export const ALL_COMPONENTS = [EveTabsComponent,
     EveDateTimeComponent,
     EveWidgetComponent,
     EveDateComponent,
-    EveTimeComponent];
+    EveTimeComponent,
+    EveRadioComponent];
  

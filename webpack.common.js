@@ -129,9 +129,9 @@ let config = {
     }
 
 })();
-config.devtool="source-map";
-if(args.env==="dev"){
 
+if(args.env==="dev"){
+    config.devtool="source-map";
 }
 if(args.minify){
     config.plugins.push(  new webpack.optimize.UglifyJsPlugin({

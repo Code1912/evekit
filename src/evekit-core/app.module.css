@@ -8,3 +8,9 @@ ul.messenger-theme-flat .messenger-message.alert-warning .messenger-message-inne
 {
     background-color: #404040!important;
 }
+
+.input-group-addon[aria-disabled]{
+    background-color: #eee;
+    cursor: not-allowed;
+
+}

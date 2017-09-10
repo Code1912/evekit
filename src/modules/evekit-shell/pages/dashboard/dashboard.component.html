@@ -23,12 +23,14 @@
     </div>
 
     <eve-checkbox [(ngModel)]="eveCb" (change)="change(val)"></eve-checkbox>
+
+    <eve-checkbox [(ngModel)]="eveCb" (change)="change(val)" [disabled]="true"></eve-checkbox>
     dateTime:{{dateTime}}
     <eve-date-time   [(ngModel)]="dateTime"></eve-date-time>
 
     <p>
         eve-time:{{time}}
-        <eve-time [(ngModel)]="time"></eve-time>
+        <eve-time [(ngModel)]="time" [disabled]="true"></eve-time>
     </p>
     <p>
         eve-date:{{date}}

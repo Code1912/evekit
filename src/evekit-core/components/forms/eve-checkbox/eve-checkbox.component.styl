@@ -1,23 +1,38 @@
 .eve-checkbox{
-  margin-bottom:  10px ;
-  margin-top: 10px
+
 }
 .eve-checkbox>input{ display: none}
+
 .eve-checkbox>label>span{
   cursor: pointer; font-weight: normal; line-height: 20px;  display: inline-block;
 }
 .eve-checkbox>input:checked+label  span:before  {
-  cursor: pointer;
+
   content: "\f00c";
+  transition: all 0.3s ease-in-out;
+  color: #ffffff;
+  border:2px solid #3c8dbc;
+  background-color :#3c8dbc;
+  -webkit-font-smoothing: antialiased;
+}
+
+.eve-checkbox>input:enabled+label:hover span:before{
+  border: 2px solid  #3c8dbc;
+  height: 20px;
+  width: 20px;
+}
+.eve-checkbox>label span:before{
+  margin-right :3px;
+  padding:1px;
   height: 20px;
   width: 20px;
   text-align: center;
   vertical-align: middle;
-  padding-top: 3px;
-  transition: all 0.3s ease-in-out;
-  cursor:inherit;
+  cursor: pointer;
+  content: "";
   color: #ffffff;
-  background-color: #3c8dbc;
+  border:1px solid #ddd;
+  background-color: #fffff;
   display: inline-block;
   font: normal normal normal 14px/1 FontAwesome;
   font-size: inherit;
@@ -25,20 +40,27 @@
   -webkit-font-smoothing: antialiased;
 }
 
-.eve-checkbox>label span:before{
-  cursor: pointer;
-  content: "";
-  height: 20px;
-  width: 20px;
-  text-align: center;
-  vertical-align: middle;
-  padding-top: 3px;
-  cursor:inherit;
+
+.eve-checkbox>input[disabled]:checked+label  span:before  {
+  content: "\f00c";
   color: #ffffff;
-  background-color: #3c8dbc;
-  display: inline-block;
-  font: normal normal normal 14px/1 FontAwesome;
-  font-size: inherit;
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
+  border:2px solid rgba(60, 141, 188, 0.65);
+  background-color :rgba(60, 141, 188, 0.65);
+  cursor:not-allowed
+}
+.eve-checkbox>input[disabled]+label  span:before  {
+  content: " ";
+  color: #ffffff;
+  cursor:not-allowed
+}
+.eve-checkbox>input[disabled]:checked+label  span:before  {
+  content: "";
+  color: #ffffff;
+  border-color:2px solid #ddd;
+  cursor:not-allowed
+}
+.eve-checkbox>input[disabled]+label  span:before  {
+
+  border-color:2px solid #ddd!important;
+  cursor:not-allowed
 }
