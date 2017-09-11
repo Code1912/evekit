@@ -10,7 +10,7 @@ import {RouterModule} from '@angular/router';
 import {HttpModule} from "@angular/http" ;
 import {EvekitCoreModule} from "evekit/core";
 import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
-
+import "./app.module.styl";
 @NgModule({
     providers: [
         {provide: APP_BASE_HREF, useValue: ''}
