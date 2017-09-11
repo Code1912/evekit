@@ -1,12 +1,12 @@
 {
   "assetJS": [
+    "./node_modules/core-js/client/shim.min.js",
     "./node_modules/jquery/dist/jquery.js",
     "./src/assets/js/echarts/echarts.min.js",
     "./src/assets/js/bootstrap/bootstrap.js",
     "./src/assets/js/extend/extend.js",
     "./src/assets/js/slimscroll/jquery.slimscroll.js",
     "./src/assets/js/adminLTE/app.js",
-    "./node_modules/core-js/client/shim.min.js",
     "./node_modules/zone.js/dist/zone.js",
     "./node_modules/rxjs/bundles/Rx.js",
     "./node_modules/reflect-metadata/Reflect.js",
