@@ -370,7 +370,9 @@ div.FixedHeader_Cloned table {
     margin: 0 !important
 }
 
-
+.table{
+    background-color: #ffffff;
+}
 eve-grid .eve-grid-icon{
     cursor: pointer;
     color:  #204d74;

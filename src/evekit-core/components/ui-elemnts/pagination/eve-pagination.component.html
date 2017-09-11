@@ -1,0 +1,46 @@
+<div class="row">
+    <div class="col-sm-3">
+        <div class="dataTables_info">
+           <span>   {{start}} - {{end}} of {{totalCount}} items
+            </span>
+
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="dataTables_info">
+            <select (change)="onPageSizeChange()" style="display: inline; width: 70px" [(ngModel)]="pageSize" class="form-control input-sm">
+                <option [value]="item" *ngFor="let item of pagination" [innerText]="item"></option>
+
+            </select>
+
+            <span style=" line-height: 30px">
+                items per page
+            </span>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="dataTables_paginate paging_simple_numbers">
+            <ul class="pagination">
+                <li (click)="onFirstOrLast(true)" class="paginate_button previous  " [ngClass]="{'disabled':pageIndex<=1}"><a href="javascript:void(0)"
+                                                                 data-dt-idx="0" tabindex="0"><i
+                        class=" fa  fa-angle-double-left"></i></a>
+                </li>
+                <li (click)="onPreOrNext(-1)" class="paginate_button previous disabled" [ngClass]="{'disabled':pageIndex<=1}"><a href="javascript:void(0)"
+                                                                 data-dt-idx="0" tabindex="0"><i
+                        class="fa   fa-angle-left"></i></a>
+                </li>
+                <li (click)="onPageIndexChange(i)" class="paginate_button {{pageIndex===i?'active':''}}" *ngFor="let i of _bindPageList">
+                    <a href="javascript:void(0)"      tabindex="0"[innerText]="i"> </a>
+                </li>
+
+                <li class="paginate_button next"  [ngClass]="{'disabled':pageIndex>=_pageCount}" (click)="onPreOrNext(1)">
+                    <a data-dt-idx="7" tabindex="0"><i class="fa   fa-angle-right"></i></a>
+                </li>
+                <li class="paginate_button next"  [ngClass]="{'disabled':pageIndex>=_pageCount}"(click)="onFirstOrLast()" >
+                    <a data-dt-idx="7" tabindex="0"><i class=" fa  fa-angle-double-right"></i></a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</div>

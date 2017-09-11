@@ -6,26 +6,72 @@ import {EveGridCellTemplateDirective} from "./eve-grid-cell.direcitve";
     selector: 'eve-grid-column'
 })
 export class EveGridColumnDirective {
-    @Input()
-    name:string="";
+
+    headerClass: string = "";
+    private _sortable: boolean = false;
+    private _sort: string = "";
 
     @Input()
-    field:string="";
+    get sort(): string {
+        return this._sort;
+    }
+
+    set sort(value: string) {
+        if (["desc", "asc", ""].indexOf((value || "").trim()) < 0) {
+            value = "";
+        }
+        this._sort = value;
+        this.setHeaderClass();
+    }
 
     @Input()
-    sort:string="";
+    get sortable(): boolean {
+        return this._sortable;
+    }
+
+    set sortable(value: boolean) {
+        this._sortable = value;
+        this.setHeaderClass();
+    }
 
     @Input()
-    sortable:boolean=false;
+    name: string = "";
 
     @Input()
-    visible:boolean=true;
+    field: string = "";
+
+
+    @Input()
+    visible: boolean = true;
+
+    @Input()
+    width: number = null;
 
     @ContentChild(EveGridHeaderTemplateDirective)
-    headerTemplate:EveGridHeaderTemplateDirective;
+    headerTemplate: EveGridHeaderTemplateDirective;
 
     @ContentChild(EveGridCellTemplateDirective)
-    cellTemplate:EveGridCellTemplateDirective;
+    cellTemplate: EveGridCellTemplateDirective;
+
     constructor() {
+    }
+
+    private setHeaderClass() {
+        if (this.sortable) {
+            this.headerClass = `sorting${this.sort ? "_" : ""}${this.sort}`;
+        } else {
+            this.headerClass = "";
+        }
+    }
+
+    changeSort() {
+        if (this.sort === "") {
+            this.sort = "asc";
+        } else if (this.sort === "asc") {
+            this.sort = "desc";
+        }
+        else {
+            this.sort = "";
+        }
     }
 }

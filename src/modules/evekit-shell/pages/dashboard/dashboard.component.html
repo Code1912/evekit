@@ -1,7 +1,7 @@
 <div style="height: 1000px">
-    <eve-grid [data]="dataList">
+    <eve-grid [data]="dataList" [pageSize]="13" [totalCount]="810" [pageIndex]="1" [pagination]="[1,8,9,6]">
 
-        <eve-grid-column  name="@id" field="id" [visible]="true">
+        <eve-grid-column  name="@id" field="id" [visible]="true" [width]="'30px'" [sortable]="true" sort="desc">
             <ng-template eve-grid-header  let-header >
                 1111:{{header.name}}
             </ng-template>
@@ -9,9 +9,9 @@
                 id:{{dataItem.id}}
             </ng-template>
         </eve-grid-column>
-        <eve-grid-column  name="name" field="name">
+        <eve-grid-column  name="name" field="name" [width]="'60px'">
         </eve-grid-column>
-        <eve-grid-column  name="age" field="age">
+        <eve-grid-column  name="age" field="age"  >
         </eve-grid-column>
         <ng-template eve-grid-toolbar>
             <button class="btn btn-sm btn-info"><i class="fa fa-plus"></i></button>
@@ -20,6 +20,7 @@
            this is detail {{rowIndex}},ID: {{dataItem.id}}
         </ng-template>
     </eve-grid>
+    <eve-pagination [pageIndex]="1" [pageSize]="10" [pagination]="[5,10,20,30]" [totalCount]="97"></eve-pagination>
     <button class="btn btn-sm btn-primary" (click)="msg(0)" >Messager</button>
     <button class="btn btn-sm btn-danger" (click)="btnClick(0)" >Test alert error</button>
     <button class="btn btn-sm btn-info" (click)="btnClick(1)" >Test alert info</button>

@@ -20,6 +20,7 @@ import {EveGridToolbarTemplateDirective} from "./ui-elemnts/grid/eve-grid-toolba
 import {EveGridComponent} from "./ui-elemnts/grid/eve-grid.component";
 import {EveGridHeaderTemplateDirective} from "./ui-elemnts/grid/eve-grid-header.dirctive";
 import {EveGridCellTemplateDirective} from "./ui-elemnts/grid/eve-grid-cell.direcitve";
+import {EvePaginationComponent} from "./ui-elemnts/pagination/eve-pagination.component";
 
 export * from "./ui-elemnts/alert/alert";
 
@@ -41,7 +42,8 @@ export {
     EveGridColumnDirective,
     EveGridToolbarTemplateDirective,
     EveGridComponent,
-    EveGridHeaderTemplateDirective
+    EveGridHeaderTemplateDirective,
+    EvePaginationComponent
 }
 
 export const ALL_COMPONENTS = [EveTabsComponent,
@@ -62,5 +64,6 @@ export const ALL_COMPONENTS = [EveTabsComponent,
     EveGridToolbarTemplateDirective,
     EveGridCellTemplateDirective,
     EveGridComponent,
-    EveGridHeaderTemplateDirective];
+    EveGridHeaderTemplateDirective,
+    EvePaginationComponent];
  
