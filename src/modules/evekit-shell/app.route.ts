@@ -4,7 +4,7 @@
 import {RouterModule,Routes} from "@angular/router"
 import {ModuleWithProviders} from "@angular/core"
 
-import {EveAuthService} from "evekit/core";
+import {EveAuthService,ModuleLoader} from "evekit/core";
 import {EveComponent,Error404Component,DashboardComponent,LoginComponent} from "./pages";
 
 /*  {path: 'moduleA/test',
@@ -21,6 +21,11 @@ export const AppRoutes: ModuleWithProviders = RouterModule.forRoot(<Routes>[
             },{
                 path: '',
                 component: DashboardComponent
+            },{
+                path: 'store-maintain',
+                loadChildren:()=>{
+                  return  ModuleLoader.loadModule("store-maintain");
+                }
             }
         ]
     },

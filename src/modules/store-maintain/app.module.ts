@@ -14,7 +14,7 @@ import { FeedbackModule} from "./feedback/app"
  
  import { EvekitCoreModule} from  "evekit/core"
 
-
+import "./feedback/style.css";
 @NgModule({
     imports:[EvekitCoreModule,RouterModule.forChild([
         {
@@ -23,6 +23,6 @@ import { FeedbackModule} from "./feedback/app"
         }
     ])]
 })
-export class StoreMaintainModule {
+export class AppModule {
 
 }

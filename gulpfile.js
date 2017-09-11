@@ -3,10 +3,10 @@
  * Date  : 2016/10/3 (́>◞౪◟<‵)ﾉｼ
  */
 'use strict';
-
+let _=require("lodash");
 let through=require("through2");
 let assets=require("./assets.json")
-//console.log(args)
+let ExtractTextPlugin = require('extract-text-webpack-plugin');
 let ts = require("gulp-typescript");
 let exec = require('child_process').exec;
 let gutil = require("gulp-util");
@@ -143,11 +143,13 @@ function buildModuleTask(moduleName) {
     gulp.src([`src/modules/${moduleName}/resources/**/*.{jpg,jpeg,png,gif}` ])
         .pipe(gulp.dest(`dist/modules/${moduleName}/resources`));
     gulp.task(taskName, function (done) {
-        let config = Object.create(webpackConfig);
+        let config = _.merge({},webpackConfig);
         let key = `evekit[${moduleName}]`;
         config.entry[`${moduleName}`] = `./src/modules/${moduleName}/index.ts`;
-        config.output.path=helpers.root("dist","modules");
+        config.output.path=helpers.root("dist",`modules/${moduleName}/`);
+        config.output.filename="app.js";
         config.watch = args.env === "dev";
+        config.plugins.push(  new ExtractTextPlugin('app.css'));
         webpackCompile(config, done);
     });
     return taskName;
@@ -183,10 +185,11 @@ function dts(module) {
 }
 
 gulp.task("build:evekit-core", (done) => {
-    let config = Object.assign({}, webpackConfig);
+    let config = _.merge({}, webpackConfig);
     config.entry = {
         'evekit-core': './src/evekit-core/index.ts',
     };
+    config.plugins.push(  new ExtractTextPlugin('[name].css'));
     webpackCompile(config, done);
 });
 

@@ -2,10 +2,9 @@
  * Created by Code1912 on 2017/8/16.
  */
 let webpack = require('webpack');
-let WatchIgnorePlugin = require('watch-ignore-webpack-plugin')
+let WatchIgnorePlugin = require('watch-ignore-webpack-plugin');
 //let HtmlWebpackPlugin = require('html-webpack-plugin');
-var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-
+let OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 let ExtractTextPlugin = require('extract-text-webpack-plugin');
 let helpers = require('./helpers');
 let args = helpers.args();
@@ -70,7 +69,6 @@ let config = {
             ]
     },
     plugins: [
-        new ExtractTextPlugin('[name].css'),
         new WatchIgnorePlugin([
             helpers.root( 'node_modules'),
             helpers.root( 'build'),

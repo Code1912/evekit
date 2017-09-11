@@ -8,23 +8,16 @@ import {Router, Route, NavigationError, NavigationEnd} from "@angular/router"
 import {EmptyModule} from "./empty.module";
 
 export class  ModuleLoader{
-
     private static router:Router;
-    static  loadModule(moduleName:string){
-        let jsUrl=`modules/${moduleName}/${moduleName}.js`;
-        StyleLoader.load(`modules/${moduleName}/${moduleName}.css`);
-        return new Promise((resolve, reject)=>{
-            ScriptLoader.load(jsUrl).then((ret)=>{
-                return window["evekit"][moduleName];
-            }).then((module:any)=>{
-                window['evekit'][moduleName] = module;
-                let AppModule = module.AppModule;
-                resolve(AppModule);
-            }).catch(res=>{
-                resolve(EmptyModule)
-            });
-        });
-
+       static async  loadModule(moduleName:string):Promise<any>{
+        let jsUrl=`modules/${moduleName}/app.js`;
+        StyleLoader.load(`modules/${moduleName}/app.css`);
+        let result=await ScriptLoader.load(jsUrl);
+        if(result){
+            return window["evekit"][moduleName].AppModule;
+        }else {
+            return EmptyModule;
+        }
     }
 
     static  setRouter(router:Router ){
