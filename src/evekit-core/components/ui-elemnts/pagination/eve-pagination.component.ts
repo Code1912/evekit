@@ -17,7 +17,7 @@ export class EvePaginationComponent implements OnInit {
     private _pageCount: number = 0;
 
     @Output()
-    onPageChange:EventEmitter<number>=new EventEmitter();
+    onPageChange:EventEmitter<{pageSize:number,pageIndex:number}>=new EventEmitter();
     @Input()
     get pagination(): Array<number> {
         return this._pagination;
@@ -60,6 +60,9 @@ export class EvePaginationComponent implements OnInit {
     set pageSize(value: number) {
         if (!value) {
             value = 10;
+        }
+        if(this._pageSize === value){
+            return;
         }
         this._pageSize = parseInt(value.toString());
         if(this.pagination.indexOf(this._pageSize)==-1){
@@ -134,7 +137,6 @@ export class EvePaginationComponent implements OnInit {
             array=array.concat(this.getNextPageList());
             array=array.concat(this.getPrePageList());
             array=this.sortAsc(array);
-            console.log(array)
             array =  array.slice(array.length - 5, array.length);
         }
         this._bindPageList = array;
@@ -149,7 +151,7 @@ export class EvePaginationComponent implements OnInit {
             return;
         }
         this.pageIndex = i;
-        this.onPageChange.emit(this.pageIndex);
+        this.onPageChange.emit({pageSize:this.pageSize,pageIndex:this.pageIndex});
     }
 
     private  onPreOrNext(i){
@@ -158,10 +160,10 @@ export class EvePaginationComponent implements OnInit {
             return;
         }
         this.pageIndex+=i;
-        this.onPageChange.emit(this.pageIndex);
+        this.onPageChange.emit({pageSize:this.pageSize,pageIndex:this.pageIndex});
     }
-    private  onFirstOrLast(isFirst:boolean){
 
+    private  onFirstOrLast(isFirst:boolean){
         if(isFirst){
             if(this.pageIndex<=1){
                 return;
@@ -174,7 +176,7 @@ export class EvePaginationComponent implements OnInit {
             }
             this.pageIndex=this._pageCount;
         }
-        this.onPageChange.emit(this.pageIndex);
+        this.onPageChange.emit({pageSize:this.pageSize,pageIndex:this.pageIndex});
     }
     private  onPageSizeChange(){
         this.setPageCount();
@@ -182,7 +184,7 @@ export class EvePaginationComponent implements OnInit {
             this.pageIndex=this._pageCount;
         }
         this.setBindPageList();
-        this.onPageChange.emit(this.pageIndex);
+        this.onPageChange.emit({pageSize:this.pageSize,pageIndex:this.pageIndex});
     }
     private setPageCount() {
         if (this.pageSize > 0) {

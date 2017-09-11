@@ -22,7 +22,6 @@ export  class  StyleLoader implements  SourceLoader {
                 resolve(true)
             }
             linkElement.addEventListener("error",  (ev: ErrorEvent) => {
-                console.log(ev);
                 reject(false)
             }, true);
             document.head.appendChild(linkElement);

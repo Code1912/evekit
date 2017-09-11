@@ -95,8 +95,6 @@ export class EveGridComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log(this.toolbarTemplate);
-        console.log(this.detailTemplate)
     }
 
     private onRowDetailShowClick(dataItem: any) {
@@ -144,14 +142,15 @@ export class EveGridComponent implements OnInit {
     expandRow(index: number) {
         this.toggle(index, true)
     }
-    private  onPageChange(pageIndex:number){
-        this.pageIndex=pageIndex;
-        console.log(1)
+    private  onPageChange($event:{pageSize:number,pageIndex:number}){
+        this.pageIndex=$event.pageIndex;
+        this.pageSize=$event.pageSize;
         this.emitChangeEvent();
     }
     private  emitChangeEvent(){
         let event=new GridChangeEvent();
         event.pageIndex=this.pageIndex;
+        event.pageSize=this.pageSize;
         event.sortFields=this.columns.filter(p=>p.sort!='').map(p=>{
             return {
                 sort:p.sort,
@@ -164,6 +163,7 @@ export class EveGridComponent implements OnInit {
 
 export class GridChangeEvent {
     pageIndex: number;
+    pageSize:number;
     sortFields: Array<{
         sort: string,
         field: string

@@ -1,4 +1,4 @@
-<div style="height: 1000px">
+<div style="min-height: 1000px">
     <eve-grid [data]="dataList" [pageable]="true" (pageChange)="onPageChange($event)" [pageSize]="13" [totalCount]="810" [pageIndex]="1" [pagination]="[1,8,9,6]">
 
         <eve-grid-column  name="@id" field="id" [visible]="true" [width]="'30px'" [sortable]="true" sort="desc">
