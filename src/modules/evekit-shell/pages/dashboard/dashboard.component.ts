@@ -4,6 +4,8 @@
 import {Component, OnInit, AfterViewInit, ViewChild} from '@angular/core';
 import {Router} from "@angular/router";
 import {EveAlertService ,EveHttpService,EveMessengerService } from 'evekit/core';
+import {Subject} from "rxjs";
+
 
 @Component({
     selector: 'div[dashboard]',
@@ -28,6 +30,19 @@ export class DashboardComponent implements OnInit,AfterViewInit {
     ]
     constructor(private  alertService:EveAlertService,private  http:EveHttpService,private  router:Router,private  messenger:EveMessengerService) {
 
+    }
+    onPageChange($event:any){
+        console.log($event);
+      let sb=new Subject();
+      sb.delay(1000);
+      sb.subscribe(()=>{
+          let array=[];
+         for (let i=$event.pageIndex;i<$event.pageIndex+10;i++){
+             array.push( {id:i,name:"name"+i,age:i})
+         }
+         this.dataList=array;
+      });
+      sb.next();
     }
     msg(){
         this.messenger.confirm("<div>sdfsdfsdf</div>",()=>{

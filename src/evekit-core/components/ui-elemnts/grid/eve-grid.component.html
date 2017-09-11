@@ -51,6 +51,6 @@
             </ng-container>
             </tbody>
         </table>
-       <eve-pagination [pageIndex]="pageIndex" [pageSize]="pageSize" [totalCount]="totalCount" (onPageChange)="onPageChange"></eve-pagination>
+       <eve-pagination *ngIf="pageable" [pageIndex]="pageIndex" [pageSize]="pageSize" [totalCount]="totalCount" (onPageChange)="onPageChange($event)"></eve-pagination>
     </div>
 </div>

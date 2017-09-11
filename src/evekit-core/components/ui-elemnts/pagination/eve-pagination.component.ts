@@ -146,7 +146,7 @@ export class EvePaginationComponent implements OnInit {
     }
     private onPageIndexChange(i) {
         if(this.pageIndex==i){
-            return
+            return;
         }
         this.pageIndex = i;
         this.onPageChange.emit(this.pageIndex);

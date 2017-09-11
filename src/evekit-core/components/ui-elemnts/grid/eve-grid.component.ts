@@ -146,6 +146,7 @@ export class EveGridComponent implements OnInit {
     }
     private  onPageChange(pageIndex:number){
         this.pageIndex=pageIndex;
+        console.log(1)
         this.emitChangeEvent();
     }
     private  emitChangeEvent(){

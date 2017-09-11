@@ -17,7 +17,7 @@ import {EveRadioComponent} from "./forms/eve-radio/eve-radio.component";
 import {EveGridDetailTemplateDirective} from "./ui-elemnts/grid/eve-grid-detail.directive";
 import {EveGridColumnDirective} from "./ui-elemnts/grid/eve-grid-column.directive";
 import {EveGridToolbarTemplateDirective} from "./ui-elemnts/grid/eve-grid-toolbar.dirctive";
-import {EveGridComponent} from "./ui-elemnts/grid/eve-grid.component";
+import {EveGridComponent,GridChangeEvent} from "./ui-elemnts/grid/eve-grid.component";
 import {EveGridHeaderTemplateDirective} from "./ui-elemnts/grid/eve-grid-header.dirctive";
 import {EveGridCellTemplateDirective} from "./ui-elemnts/grid/eve-grid-cell.direcitve";
 import {EvePaginationComponent} from "./ui-elemnts/pagination/eve-pagination.component";
@@ -43,7 +43,8 @@ export {
     EveGridToolbarTemplateDirective,
     EveGridComponent,
     EveGridHeaderTemplateDirective,
-    EvePaginationComponent
+    EvePaginationComponent,
+    GridChangeEvent
 }
 
 export const ALL_COMPONENTS = [EveTabsComponent,
