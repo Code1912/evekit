@@ -9,6 +9,7 @@ import {ALL_COMPONENTS} from "./components/index";
 import {ALL_SERVICES} from "./services/index";
 import {ALL_DIRECTIVES} from "./directives";
 import "./app.module.css"
+import {ALL_PIPES} from "./pipes";
 @NgModule({
     providers: [...ALL_SERVICES],
     imports: [
@@ -21,8 +22,10 @@ import "./app.module.css"
     declarations: [
         ...ALL_DIRECTIVES,
         ...ALL_COMPONENTS,
+        ...ALL_PIPES
     ],
     exports: [
+        ...ALL_PIPES,
         ...ALL_DIRECTIVES,
         ...ALL_COMPONENTS,
         CommonModule,

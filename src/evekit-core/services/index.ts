@@ -10,6 +10,7 @@ import {EveCookieService} from "./eve-cookie.service";
 import {EveAlertService} from "./eve-alert.service";
 import {UtilService} from "./util.service";
 import {EveMessengerService} from "./eve-messenger.service";
+import {EveTranslateService} from'./eve-translate.service'
 
 export {
     EveAlertService,
@@ -20,6 +21,7 @@ export {
     EveCookieService,
     UserInfo,
     UtilService,
-    EveMessengerService
+    EveMessengerService,
+    EveTranslateService
 }
-export const ALL_SERVICES = [EveAlertService, EveEventService, EveLoadingService, EveHttpService, EveAuthService, EveCookieService,UtilService,EveMessengerService]
+export const ALL_SERVICES = [EveTranslateService ,EveAlertService, EveEventService, EveLoadingService, EveHttpService, EveAuthService, EveCookieService,UtilService,EveMessengerService]

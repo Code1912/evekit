@@ -1,6 +1,6 @@
  <a href="javascript:void(0)"   style="text-decoration: none" (click)="menuClick()">
      <i  class="fa fa-{{item.icon}}"  ></i>
-     <span>{{item.name}}</span>
+     <span>{{item.name|translate}}</span>
      <i class="fa fa-angle-left pull-right" *ngIf="item.children&&item.children.length>0"></i>
  </a>
 <ul class="treeview-menu"     [ngStyle]="{height:item.children&&item.children.length>0?'':'0px'}">

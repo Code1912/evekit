@@ -249,4 +249,5 @@ gulp.task('build', function (done) {
 
 
 gulp.task("dts", done => {
+    return gulp.series("dts:evekit-core")(done)
 });

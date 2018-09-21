@@ -12,9 +12,10 @@ import { BrowserModule }  from '@angular/platform-browser';
 import { RouterModule} from '@angular/router';
 import { FeedbackModule} from "./feedback/app"
  
- import { EvekitCoreModule} from  "evekit/core"
+ import {EvekitCoreModule, EveTranslateService} from "evekit/core"
 
 import "./feedback/style.css";
+import {lang} from "./i18n";
 @NgModule({
     imports:[EvekitCoreModule,RouterModule.forChild([
         {
@@ -24,5 +25,8 @@ import "./feedback/style.css";
     ])]
 })
 export class AppModule {
+    constructor(private translate:EveTranslateService){
+       this.translate.setAllLang(lang)
+    }
 
 }

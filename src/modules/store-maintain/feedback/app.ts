@@ -6,8 +6,9 @@ import { NgModule,NgModuleFactoryLoader } from '@angular/core';
 import { BrowserModule }  from '@angular/platform-browser';
 import { RouterModule} from '@angular/router';
 import { QueryComponent} from "./query.component"
+import {EvekitCoreModule} from "evekit/core";
 @NgModule({
-    imports:[RouterModule.forChild([
+    imports:[EvekitCoreModule, RouterModule.forChild([
         {
             path: 'query',
             component: QueryComponent
