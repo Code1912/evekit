@@ -15,7 +15,7 @@ export class EveHttpService {
     constructor(private  http: Http,
                 private  loadingService: EveLoadingService,
                 private alertService: EveAlertService) {
-
+         console.log("http service init")
     }
 
     private _count: number = 0;
