@@ -11,12 +11,12 @@ import {catchError} from "rxjs/operators";
 import {EveLoadingService} from "./eve-loading.service";
 import {EveAlertService} from "./eve-alert.service";
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class EveHttpService {
     constructor(private  http: Http,
                 private  loadingService: EveLoadingService,
                 private alertService: EveAlertService) {
-         console.log("http service init")
+        console.log("http service init")
     }
 
     private _count: number = 0;
@@ -42,7 +42,7 @@ export class EveHttpService {
         return this._intercept(this.http.put(url, this._getRequestOptionArgs(options)), options);
     }
 
-    private  _getRequestOptionArgs(options ?: RequestOptionsArgs): RequestOptionsArgs {
+    private _getRequestOptionArgs(options ?: RequestOptionsArgs): RequestOptionsArgs {
         if (options == null) {
             options = new RequestOptions();
         }

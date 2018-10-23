@@ -2,21 +2,20 @@
  * Created by Code1912 on 2016/10/10.
  */
 import { Injectable ,EventEmitter} from '@angular/core';
-
-@Injectable()
+import {Subject} from 'rxjs';
+@Injectable({ providedIn: 'root' })
 export class EveEventService {
     constructor(){
 
     }
     static   registerEvent={};
-    public subscribe(name:string,func:Function ):any{
+    public subscribe(name:string,func:Function ):Subject<any>{
         if(!EveEventService.registerEvent.hasOwnProperty(name)){
             EveEventService.registerEvent[name]=new EventEmitter<any>();
         }
         let event:EventEmitter<any>=EveEventService.registerEvent[name];
 
-
-        return  event.subscribe(func);
+        return  <Subject<any>>event.subscribe(func);
     }
 
 

@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 /**
  * Created by Code1912 on 2016/10/16.
  */
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export  class  EveCookieService{
 
     public  getCookie(name: string): string  {

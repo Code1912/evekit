@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 const noop=Function.prototype;
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class EveMessengerService{
 
     private  mask:JQuery;

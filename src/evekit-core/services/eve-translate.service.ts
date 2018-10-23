@@ -1,7 +1,7 @@
 import {Injectable, EventEmitter, NgZone, ApplicationRef} from '@angular/core';
 import {EveEventService} from "./eve-event.service";
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class EveTranslateService {
     static lang: string = 'zh';
     static _langObj = {};

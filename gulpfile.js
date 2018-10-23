@@ -6,7 +6,7 @@
 let _=require("lodash");
 let through=require("through2");
 let assets=require("./assets.json")
-let ExtractTextPlugin = require('extract-text-webpack-plugin');
+const { TsConfigPathsPlugin } = require('awesome-typescript-loader');
 let ts = require("gulp-typescript");
 let exec = require('child_process').exec;
 let gutil = require("gulp-util");
@@ -148,8 +148,7 @@ function buildModuleTask(moduleName) {
         config.entry[`${moduleName}`] = `./src/modules/${moduleName}/index.ts`;
         config.output.path=helpers.root("dist",`modules/${moduleName}/`);
         config.output.filename="app.js";
-        config.watch = args.env === "dev";
-        config.plugins.push(  new ExtractTextPlugin('app.css'));
+        config.watch = args.env === "dev"; 
         webpackCompile(config, done);
     });
     return taskName;
@@ -188,8 +187,7 @@ gulp.task("build:evekit-core", (done) => {
     let config = _.merge({}, webpackConfig);
     config.entry = {
         'evekit-core': './src/evekit-core/index.ts',
-    };
-    config.plugins.push(  new ExtractTextPlugin('[name].css'));
+    }; 
     webpackCompile(config, done);
 });
 

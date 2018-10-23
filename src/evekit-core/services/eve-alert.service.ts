@@ -9,7 +9,7 @@ import { Injectable ,AfterViewChecked,EventEmitter} from '@angular/core';
 import {EveEventService} from "./eve-event.service";
 import {AlertInfo, AlertType} from "../components/ui-elemnts/alert/alert";
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class EveAlertService {
     constructor(private  eventService:EveEventService){
 

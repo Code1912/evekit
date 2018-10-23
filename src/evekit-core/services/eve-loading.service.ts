@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 import {EveEventService} from "../services";
 
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class EveLoadingService {
 
     constructor(private rootEventService:EveEventService) {

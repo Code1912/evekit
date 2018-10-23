@@ -9,7 +9,7 @@ import {  Observable,pipe} from "rxjs";
 import {EveCookieService} from "./eve-cookie.service";
 import {map} from "rxjs/operators";
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export  class  EveAuthService implements CanActivate {
     private apiAddress = "http://127.0.0.1:7777";
     private _userInfo: UserInfo;
