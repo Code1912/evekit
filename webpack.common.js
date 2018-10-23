@@ -4,11 +4,12 @@
 let webpack = require('webpack');
 let WatchIgnorePlugin = require('watch-ignore-webpack-plugin');
 //let HtmlWebpackPlugin = require('html-webpack-plugin');
-let OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-let ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+let OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin'); 
 let helpers = require('./helpers');
 let args = helpers.args();
 let config = {
+    mode:args.env === "dev"?"development":"production",
     output: {
         path: helpers.root('dist'),
         filename: '[name].js',
@@ -29,37 +30,31 @@ let config = {
         }
     },
     module: {
-        loaders:
+        rules:
             [
                 {
                     test: /\.ts$/,
-                    loaders: ['awesome-typescript-loader','angular2-template-loader'],
-                    exclude: /node_modules/
+                    loaders: ['awesome-typescript-loader', 'angular2-template-loader'],
+                    exclude: [/node_modules/]
+                }, 
+                {
+                    test: /\.css$/, 
+                    loader: ["to-string-loader",MiniCssExtractPlugin.loader,'css-loader']
                 },
                 {
-                    test: /\.css$/,
-                    loaders: ['to-string-loader'].concat(ExtractTextPlugin.extract("css-loader")),
-                    exclude: /node_modules/
-                },
-                {
-                    test: /\.scss/,
-                    loaders: ['to-string-loader'].concat(ExtractTextPlugin.extract("css-loader!sass-loader")),
-                    exclude: /node_modules/
-                },
-                {
-                    test: /\.sass/,
-                    loaders: ['to-string-loader'].concat(ExtractTextPlugin.extract("css-loader!sass-loader")),
-                    exclude: /node_modules/
-                },
-                {
-                    test: /\.less/,
-                    loaders: ['to-string-loader'].concat(ExtractTextPlugin.extract("css-loader!less-loader")),
-                    exclude: /node_modules/
+                    test: /\.scss$/, 
+                    use: ["to-string-loader",MiniCssExtractPlugin.loader,"css-loader", "sass-loader"]
+
                 },
                 {
                     test: /\.styl/,
-                    loaders: ['to-string-loader'].concat(ExtractTextPlugin.extract("css-loader!stylus-loader")),
+                    loaders:      ["to-string-loader",MiniCssExtractPlugin.loader, "css-loader","stylus-loader"],
                     exclude: /node_modules/
+                },
+                {
+                    test: /\.scss$/, 
+                    use: ["to-string-loader",MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+
                 },
                 {
                     test: /\.html$/,
@@ -69,19 +64,22 @@ let config = {
             ]
     },
     plugins: [
+        new MiniCssExtractPlugin({
+            filename: "[name].css"
+        }),
         new WatchIgnorePlugin([
-            helpers.root( 'node_modules'),
-            helpers.root( 'build'),
-            helpers.root( 'dist'),
+            helpers.root('node_modules'),
+            helpers.root('build'),
+            helpers.root('dist'),
         ]),
     ],
     externals: [{
         "jquery": "jQuery",
         "JQuery": "jQuery",
-        "window.Messenger":"Messenger",
-        "Messenger":"Messenger",
+        "window.Messenger": "Messenger",
+        "Messenger": "Messenger",
         "$": "jQuery",
-        'rxjs': 'Rx',
+        'rxjs': 'rxjs',
         '@angular/common': 'ng.common',
         '@angular/compiler': 'ng.compiler',
         '@angular/core': 'ng.core',
@@ -95,18 +93,22 @@ let config = {
         '@angular/platform-browser-dynamic': 'ng.platformBrowserDynamic',
         "evekit/core": "evekit.evekit-core"
     }, function (context, request, callback) {
-        if(/\.(css|sass|scss|less|styl)$/.test(request)){
-         //   return callback(null, "return ''");
+        if (/\.(css|sass|scss|less|styl)$/.test(request)) {
+            //   return callback(null, "return ''");
         }
         if (/^evekit\//.test(request)) {
             let key = request.split('/')[1];
             return callback(null, `var evekit['${key}']`);
         }
+        if (/^rxjs\//.test(request)) {
+
+            return callback(null, `var ${request.replace("/", ".")}`);
+        }
         callback();
     }],
     watchOptions: {
         aggregateTimeout: 300,
-        ignored: [/node_modules/,/dist/]
+        ignored: [/node_modules/, /dist/]
     }
 };
 (function () {
@@ -120,25 +122,25 @@ let config = {
         config.externals[0][key] = {
             commonjs2: key,
             commonjs: key,
-            amd:key,
-            umd:oldValue,
+            amd: key,
+            umd: oldValue,
             root: oldValue
         }
     }
 
 })();
 
-if(args.env==="dev"){
-    config.devtool="source-map";
+if (args.env === "dev") {
+    config.devtool = "source-map";
 }
-if(args.minify){
-    config.plugins.push(  new webpack.optimize.UglifyJsPlugin({
-        mangle:{
-            keep_fnames:true
+if (args.minify) {
+    config.plugins.push(new webpack.optimize.UglifyJsPlugin({
+        mangle: {
+            keep_fnames: true
         },
-        compress:true
+        compress: true
     }));
-    config.plugins.push( new OptimizeCssAssetsPlugin({
+    config.plugins.push(new OptimizeCssAssetsPlugin({
         assetNameRegExp: /\.css$/g,
         cssProcessor: require('cssnano'),
         canPrint: true

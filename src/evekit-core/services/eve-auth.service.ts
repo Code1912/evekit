@@ -5,8 +5,10 @@ import { Injectable  } from '@angular/core';
 
 import {Router,ActivatedRouteSnapshot, RouterStateSnapshot,CanActivate} from '@angular/router';
 import {Http} from "@angular/http";
-import {  Observable} from "rxjs";
+import {  Observable,pipe} from "rxjs";
 import {EveCookieService} from "./eve-cookie.service";
+import {map} from "rxjs/operators";
+
 @Injectable()
 export  class  EveAuthService implements CanActivate {
     private apiAddress = "http://127.0.0.1:7777";
@@ -29,11 +31,11 @@ export  class  EveAuthService implements CanActivate {
         return this.http.post(`${this.apiAddress}/login`, {
             name: name,
             pwd: pwd
-        }).map(res => res.json());
+        }).pipe(map(res => res.json()));
     }
 
     private  getUser() {
-        return this.http.get(`${this.apiAddress}/user`).map(res => res.json());
+        return this.http.get(`${this.apiAddress}/user`).pipe(map(res => res.json()));
     }
 
     logOut() {
@@ -48,10 +50,10 @@ export  class  EveAuthService implements CanActivate {
             return false;
         }
         var observable = that.getUser();
-        return observable.map(p=> {
+        return observable.pipe(map(p=> {
             that._userInfo = <UserInfo>p.result;
             return p.success;
-        })
+        }))
     }
 }
 

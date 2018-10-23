@@ -7,6 +7,7 @@ import {
     RequestMethod, URLSearchParams, ResponseContentType
 } from "@angular/http"
 import {Observable} from "rxjs";
+import {catchError} from "rxjs/operators";
 import {EveLoadingService} from "./eve-loading.service";
 import {EveAlertService} from "./eve-alert.service";
 
@@ -68,13 +69,6 @@ export class EveHttpService {
             console.log(error);
         }, () => {
             that._hideLoading();
-        });
-        req.catch((error: any) => {
-            let errMsg = (error.message) ? error.message :
-                error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-            that._hideLoading();
-            that.alertService.error(errMsg, "Error");
-            return Observable.throw(errMsg);
         });
         return req;
     }

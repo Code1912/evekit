@@ -6,12 +6,14 @@ import {ScriptLoader} from "./script.loader";
 import {StyleLoader} from "./style.loader";
 import {Router, Route, NavigationError, NavigationEnd} from "@angular/router"
 import {EmptyModule} from "./empty.module";
+import {pipe} from "rxjs";
+import {filter} from "rxjs/operators";
 
 export class  ModuleLoader{
     private static router:Router;
        static async  loadModule(moduleName:string):Promise<any>{
-        let jsUrl=`modules/${moduleName}/app.js`;
-        StyleLoader.load(`modules/${moduleName}/app.css`);
+        let jsUrl=`modules/${moduleName}/${moduleName}.js`;
+        StyleLoader.load(`modules/${moduleName}/${moduleName}.css`);
         let result=await ScriptLoader.load(jsUrl);
         if(result){
             return window["evekit"][moduleName].AppModule;
@@ -22,9 +24,9 @@ export class  ModuleLoader{
 
     static  setRouter(router:Router ){
         this.router=router;
-        this.router.events.filter(event => event instanceof NavigationError).subscribe(event=>{
+        this.router.events.pipe(filter(event => event instanceof NavigationError)).subscribe(event=>{
             this.router.navigateByUrl("system/404");
-        })
+        });
 
         this.router.errorHandler=(error: any) =>{
             if(error.message==="isLoading"){
@@ -32,7 +34,7 @@ export class  ModuleLoader{
             }
             console.error(error);
         };
-        this.router.events.filter(event => event instanceof NavigationEnd).subscribe(function ($envet:NavigationEnd) {
+        this.router.events.pipe(filter((event => event instanceof NavigationEnd))).subscribe(function ($envet:NavigationEnd) {
             //console.log($envet)
             let path=($envet.url||"").split("?")[0];
             if(path=="/login"){
@@ -53,6 +55,7 @@ export class  ModuleLoader{
     }
 
     private static addRoute(config:ModuleConfig){
+           console.log(config)
         if(this.router.config.find(p=>p.path==config.path)){
             throw  new Error(`addRoute:The route path: '${config.path}'  is duplicate `)
         }

@@ -5,7 +5,7 @@ import {Component, OnInit, AfterViewInit, ViewChild} from '@angular/core';
 import {Router} from "@angular/router";
 import {EveAlertService ,EveHttpService,EveMessengerService } from 'evekit/core';
 import {Subject} from "rxjs";
-
+import {delay} from "rxjs/operators";
 
 @Component({
     selector: 'div[dashboard]',
@@ -34,7 +34,7 @@ export class DashboardComponent implements OnInit,AfterViewInit {
     onPageChange($event:any){
         console.log($event);
       let sb=new Subject();
-      sb.delay(1000);
+      sb.pipe(delay(1000));
       sb.subscribe(()=>{
           let array=[];
          for (let i=$event.pageIndex;i<$event.pageIndex+10;i++){
