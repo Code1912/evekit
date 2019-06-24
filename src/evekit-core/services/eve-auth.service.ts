@@ -4,19 +4,19 @@
 import { Injectable  } from '@angular/core';
 
 import {Router,ActivatedRouteSnapshot, RouterStateSnapshot,CanActivate} from '@angular/router';
-import {Http} from "@angular/http";
+import {HttpClient} from "@angular/common/http";
 import {  Observable,pipe} from "rxjs";
 import {EveCookieService} from "./eve-cookie.service";
 import {map} from "rxjs/operators";
 
 @Injectable({ providedIn: 'root' })
 export  class  EveAuthService implements CanActivate {
-    private apiAddress = "http://127.0.0.1:7777";
+    private apiAddress = "http://127.0.0.1:8090";
     private _userInfo: UserInfo;
     public get userInfo(){
         return this._userInfo;
     }
-    constructor(private  router: Router, private  http: Http,private  cookie:EveCookieService) {
+    constructor(private  router: Router, private  http: HttpClient,private  cookie:EveCookieService) {
     }
 
     isLogin(): boolean {
@@ -31,11 +31,11 @@ export  class  EveAuthService implements CanActivate {
         return this.http.post(`${this.apiAddress}/login`, {
             name: name,
             pwd: pwd
-        }).pipe(map(res => res.json()));
+        });
     }
 
     private  getUser() {
-        return this.http.get(`${this.apiAddress}/user`).pipe(map(res => res.json()));
+        return this.http.get<ResResult<UserInfo>>(`${this.apiAddress}/user`);
     }
 
     logOut() {
@@ -61,4 +61,9 @@ export  class  UserInfo{
     userName:string;
     img:string;
     pwd:string
+}
+
+export  class  ResResult<T>{
+    success:boolean;
+    result:T;
 }

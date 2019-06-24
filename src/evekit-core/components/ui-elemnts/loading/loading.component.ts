@@ -4,6 +4,7 @@
  */
 import {Component, OnInit, OnDestroy, AfterContentInit} from '@angular/core';
 import {EveEventService} from "../../../services";
+import {Subject} from "rxjs";
 @Component({
     selector: 'loading',
     templateUrl: 'loading.component.html',
@@ -12,7 +13,7 @@ import {EveEventService} from "../../../services";
 })
 export class LoadingComponent implements OnInit,OnDestroy,AfterContentInit {
     public  isShow:boolean=false;
-    private  removeFunc:Function;
+    private  removeFunc:Subject<any>;
 
     constructor(private  rootEventService:EveEventService) {
 
@@ -27,7 +28,7 @@ export class LoadingComponent implements OnInit,OnDestroy,AfterContentInit {
         this.isShow=isShow;
     }
     ngOnDestroy(){
-        this.removeFunc();
+        this.removeFunc.unsubscribe();
     }
     ngAfterContentInit(){
     }

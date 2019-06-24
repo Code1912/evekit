@@ -1,0 +1,64 @@
+{
+  "success": true,
+  "result": {
+    "city": "成都",
+    "weather_data": [
+      {
+        "temperature": "20℃",
+        "pm25": 119,
+        "day": "10/20",
+        "weather": "晴天",
+        "wind": "微风",
+        "img": "http://cdn.moji.com/tianqi/assets/images/weather/w7.png"
+      },
+      {
+        "temperature": "20℃",
+        "pm25": 119,
+        "day": "10/20",
+        "weather": "晴天",
+        "wind": "微风",
+        "img": "http://cdn.moji.com/tianqi/assets/images/weather/w7.png"
+      },
+      {
+        "temperature": "20℃",
+        "pm25": 119,
+        "day": "10/20",
+        "weather": "晴天",
+        "wind": "微风",
+        "img": "http://cdn.moji.com/tianqi/assets/images/weather/w7.png"
+      },
+      {
+        "temperature": "20℃",
+        "pm25": 119,
+        "day": "10/20",
+        "weather": "晴天",
+        "wind": "微风",
+        "img": "http://cdn.moji.com/tianqi/assets/images/weather/w7.png"
+      },
+      {
+        "temperature": "20℃",
+        "pm25": 119,
+        "day": "10/20",
+        "weather": "晴天",
+        "wind": "微风",
+        "img": "http://cdn.moji.com/tianqi/assets/images/weather/w7.png"
+      },
+      {
+        "temperature": "20℃",
+        "pm25": 119,
+        "day": "10/20",
+        "weather": "晴天",
+        "wind": "微风",
+        "img": "http://cdn.moji.com/tianqi/assets/images/weather/w7.png"
+      },
+      {
+        "temperature": "20℃",
+        "pm25": 119,
+        "day": "10/20",
+        "weather": "晴天",
+        "wind": "微风",
+        "img": "http://cdn.moji.com/tianqi/assets/images/weather/w7.png"
+      }
+    ]
+  }
+}

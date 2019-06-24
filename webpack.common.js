@@ -81,6 +81,7 @@ let config = {
         "$": "jQuery",
         'rxjs': 'rxjs',
         '@angular/common': 'ng.common',
+        '@angular/common/': 'ng.common.http',
         '@angular/compiler': 'ng.compiler',
         '@angular/core': 'ng.core',
         '@angular/http': 'ng.http',

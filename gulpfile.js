@@ -8,7 +8,6 @@ let through=require("through2");
 let assets=require("./assets.json")
 const { TsConfigPathsPlugin } = require('awesome-typescript-loader');
 let ts = require("gulp-typescript");
-let exec = require('child_process').exec;
 let gutil = require("gulp-util");
 let colors = require('colors');
 let gulp = require("gulp4");
@@ -26,6 +25,7 @@ let addsrc = require('gulp-add-src');
 let del = require("del");
 let logger = require('gulp-logger');
 let helpers = require('./helpers');
+let mockServer=require('gulp-mock-server');
 let args = helpers.args();
 // import embedTemplates   from  'gulp-angular-embed-templates';
 colors.setTheme({
@@ -228,18 +228,16 @@ gulp.task('browser-sync', function () {
     });
     //  gulp.run("watch");
 });
-gulp.task("serve", done => {
-    let cmdStr = 'node serve/server';
-    exec(cmdStr, function (err, stdout, stderr) {
-        if (err) {
-            console.log(err);
-        }
-    });
-    console.log("--------------run serve--------------".blue)
-    done();
+gulp.task('mock', function() {
+   return  gulp.src(helpers.root("src","mock"))
+        .pipe(mockServer({
+            port: 8090,
+            livereload:true
+        }));
 });
+
 gulp.task('default', function (done) {
-    return gulp.series("serve","build", "browser-sync")(done);
+    return gulp.series("mock","build", "browser-sync")(done);
 });
 gulp.task('build', function (done) {
     return gulp.series("clean", gulp.parallel(["utility","dts:evekit-core", "build:evekit-core"]),  "build:modules")(done);
